@@ -10,7 +10,8 @@
             --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1;
             --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
             
-            --yellow-50: #fefce8; --yellow-100: #fef9c3; --yellow-500: #eab308; --yellow-600: #ca8a04;
+            --yellow-50: #fefce8; --yellow-100: #fef9c3;             --yellow-200: #fde68a;
+--yellow-500: #eab308; --yellow-600: #ca8a04;
             --amber-600: #d97706;
             
             --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-400: #60a5fa; --blue-600: #2563eb; --blue-700: #1d4ed8;
@@ -41,12 +42,17 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
         .text-center { text-align: center; }
         .hidden { display: none !important; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 8px; }
         
         /* --- Typography --- */
-        h1 { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.025em; }
-        .subtitle { color: var(--yellow-50); opacity: 0.95; margin-top: 2px; font-weight: 500; font-size: 0.85rem; }
+        h1 { margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: -0.025em; }
+        .subtitle { color: var(--yellow-50); opacity: 0.9; margin-top: 4px; font-weight: 500; font-size: 0.95rem; }
         .font-bold { font-weight: 700; }
-        .text-sm { font-size: 0.85rem; }
+        .text-sm { font-size: 0.875rem; }
         .text-xs { font-size: 0.75rem; }
         .uppercase { text-transform: uppercase; }
 
@@ -74,7 +80,7 @@
         .tabs-wrapper {
             overflow-x: auto;
             white-space: nowrap;
-            padding: 10px 16px;
+            padding: 0 12px;
             margin-top: -50px;
             margin-bottom: 20px;
             -webkit-overflow-scrolling: touch;
@@ -121,16 +127,18 @@
             margin-bottom: 12px;
         }
         .card.special { border: 2px solid var(--yellow-500); }
+        
+        /* Collapsible Header Style */
         .card-header { 
-            padding: 12px 16px; border-bottom: 1px solid var(--slate-100); 
+            padding: 14px 16px; 
+            border-bottom: 1px solid var(--slate-100); 
             display: flex; justify-content: space-between; align-items: center; 
             cursor: pointer; user-select: none;
-            transition: background 0.2s;
+            transition: background-color 0.2s;
         }
-        .card-body { padding: 16px; display: block; }
-        .card-body.collapsed { display: none; }
-
-        /* Helpers */
+        .card-header:active { background-color: rgba(0,0,0,0.02); }
+        
+        /* Background Helpers */
         .bg-yellow-light { background: linear-gradient(to right, #fffbeb, #fef3c7); }
         .bg-blue-light { background: linear-gradient(to right, #eff6ff, #dbeafe); }
         .bg-red-light { background: linear-gradient(to right, #fef2f2, #fee2e2); }
@@ -140,12 +148,16 @@
         .bg-yellow-100 { background: var(--yellow-100); color: var(--yellow-600); }
         .bg-indigo-100 { background: var(--indigo-100); color: var(--indigo-600); }
 
+        .card-body { padding: 16px; display: block; }
+        .card-body.collapsed { display: none; }
+
+        /* --- Items --- */
         .item-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
         .item-row:last-child { margin-bottom: 0; }
         .icon-box { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
         
         .item-content { flex: 1; }
-        .item-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+        .item-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1px; }
         .item-title { font-weight: 600; color: var(--slate-700); font-size: 0.9rem; }
         .item-desc { font-size: 0.8rem; color: var(--slate-500); line-height: 1.3; }
 
@@ -182,7 +194,7 @@
         /* --- Verse --- */
         .verse-box { text-align: center; padding: 20px 16px; margin-top: 10px; border-top: 1px solid var(--slate-200); display: none; }
         .verse-text { font-family: Georgia, serif; font-style: italic; color: var(--slate-600); font-size: 1rem; margin-bottom: 6px; }
-        .verse-ref { font-weight: 700; color: var(--slate-400); font-size: 0.75rem; text-transform: uppercase; }
+        .verse-ref { font-weight: 700; color: var(--slate-400); font-size: 0.8rem; text-transform: uppercase; }
 
         /* --- Home --- */
         .welcome-card { background: white; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--slate-200); position: relative; overflow: hidden; margin-bottom: 16px; }
@@ -301,12 +313,12 @@
 
         var menuData = [
           { date: '29/dez', day: 'Domingo', empty: true, note: 'Chegada / Organização (Sem refeição oficial)' },
-          { date: '30/dez', day: 'Segunda', b: {t:'Café Frio', i:'Pão francês, presunto e queijo'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Noite do Hot Dog', i:'Hot Dog completo com purê'} },
-          { date: '31/dez', day: 'Terça', highlight: true, b: {t:'Cuscuz Nordestino', i:'Cuscuz, ovo, queijo'}, l: {t:'Pré-Réveillon', i:'Filé de frango, arroz e purê/salada'}, d: {t:'✨ CHURRASCO DA VIRADA ✨', i:'Carnes, acompanhamentos e festa!'} },
-          { date: '01/jan', day: 'Quarta', highlight: true, b: {t:'Café da Ressaca', i:'Frio (pão francês, presunto, queijo)'}, l: {t:'✨ Churrasco de Ano Novo ✨', i:'Continuação da festa'}, d: {t:'Noite do Pastel', i:'Pastel de carne e queijo'} },
-          { date: '02/jan', day: 'Quinta', b: {t:'Café Nordestino', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Almoço Favorito', i:'Strogonoff de carne, arroz e batata palha'}, d: {t:'Noite do Macarrão', i:'Macarrão com carne moída'} },
-          { date: '03/jan', day: 'Sexta', b: {t:'Café Variado', i:'Pães variados e ovos'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Hamburgada', i:'Hambúrguer artesanal'} },
-          { date: '04/jan', day: 'Sábado', b: {t:'Café da Despedida', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Último Almoço', i:'Filé de frango, arroz e purê/salada'}, d: null }
+          { date: '30/dez', day: 'Terça', b: {t:'Café Frio', i:'Pão francês, presunto, queijo, ovos, café, leite'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Noite do Hot Dog', i:'Hot Dog completo com purê'} },
+          { date: '31/dez', day: 'Quarta', highlight: true, b: {t:'Cuscuz Nordestino', i:'Cuscuz, ovo, queijo, café'}, l: {t:'Pré-Réveillon', i:'Filé de frango, arroz e purê/salada'}, d: {t:'✨ CHURRASCO DA VIRADA ✨', i:'Picanha, Contra-filé, Linguiça, Frango, Pão de alho'} },
+          { date: '01/jan', day: 'Quinta', highlight: true, b: {t:'Café da Ressaca', i:'Frio (pão francês, presunto, queijo)'}, l: {t:'✨ Churrasco de Ano Novo ✨', i:'Continuação da festa (Maminha, sobras)'}, d: {t:'Noite do Pastel', i:'Pastel de carne e queijo'} },
+          { date: '02/jan', day: 'Sexta', b: {t:'Café Nordestino', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Almoço Favorito', i:'Strogonoff de carne, arroz e batata palha'}, d: {t:'Noite do Macarrão', i:'Macarrão com carne moída'} },
+          { date: '03/jan', day: 'Sábado', b: {t:'Café Variado', i:'Pães variados e ovos'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Hamburgada', i:'Hambúrguer artesanal'} },
+          { date: '04/jan', day: 'Domingo', b: {t:'Café da Despedida', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Último Almoço', i:'Filé de frango, arroz e purê/salada'}, d: null }
         ];
 
         var cleaningData = [
@@ -327,127 +339,6 @@
             { id: 'Teens', color: 'rose', type: 'mixed', list: 'Miguel (9), Adrian (10), Laura (8), Lázaro (11), Pedro Gabriel (13), Thiago Henry (17)', title: 'Infantil/Teens (8 a 17 anos)' }
         ];
 
-        var recipesData = [
-            {
-                date: '30/dez - Segunda',
-                meals: [
-                    { t: 'Café: Pão com Ovos', tag: 'tag-café', ing: '65 Pães franceses, 2kg Manteiga, 100 Ovos, 10L Leite, 2kg Café, 3kg Açúcar', 
-                      st: ['Prepare café em garrafas térmicas.', 'Aqueça o leite sem ferver.', 'Corte os pães.', 'Faça ovos mexidos em levas de 20-30 para não esfriar.'] },
-                    { t: 'Almoço: PF Frango', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Filé de Frango, 10 Alfaces, 8kg Tomate, 2L Óleo, 3kg Cebola', 
-                      st: ['Arroz: refogue bem.', 'Frango: chapa quente aos poucos.', 'Salada: higienizar.'] },
-                    { t: 'Jantar: Hot Dog', tag: 'tag-jantar', ing: '65 Pães Hot Dog, 10kg Salsicha, 6kg Molho, 8kg Batata (Purê), 2L Leite, 2kg Batata Palha', 
-                      st: ['Purê: cozinhe batatas, amasse com leite/manteiga.', 'Salsicha: ferva antes, depois molho.', 'Servir: estação de montagem.'] }
-                ]
-            },
-            {
-                date: '31/dez - Terça',
-                meals: [
-                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, 2kg Queijo, 1kg Manteiga, 100 Ovos, 10L Leite', 
-                      st: ['Hidrate flocão (500ml/pct). Cozinhe vapor. Sirva com queijo/ovo.'] },
-                    { t: 'Almoço: Leve', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Frango, Salada', st: 'Repetir preparo básico. Manter leve para a ceia.' },
-                    { t: 'Jantar: CHURRASCO VIRADA', tag: 'tag-jantar', ing: '6kg Picanha, 8kg Contra, 10kg Linguiça, 5kg Tulipa, 5kg Coxinha, 30 Pães Alho, 5kg Farofa, Vinagrete', 
-                      st: ['Acenda carvão cedo.', 'Comece por linguiça/frango/pão alho.', 'Salgue carnes nobres com sal grosso na hora.'] }
-                ]
-            },
-            {
-                date: '01/jan - Quarta',
-                meals: [
-                    { t: 'Café: Ressaca', tag: 'tag-café', ing: '65 Pães, Frios, Ovos, Café forte', st: 'Praticidade.' },
-                    { t: 'Almoço: Churrasco Cont.', tag: 'tag-almoço', ing: '8kg Maminha, Carnes restantes, Arroz, Farofa', st: 'Reacenda churrasqueira. Asse Maminha. Arroz fresco.' },
-                    { t: 'Jantar: Pastel', tag: 'tag-jantar', ing: '10 rolos Massa, 5kg Carne Moída, 3kg Queijo, 3L Óleo', st: 'Refogue carne bem seca. Rale queijo. Monte pastéis. Frite em imersão quente.' }
-                ]
-            },
-            {
-                date: '02/jan - Quinta',
-                meals: [
-                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, Queijo, Ovos', st: 'Cuscuz tradicional.' },
-                    { t: 'Almoço: Strogonoff', tag: 'tag-almoço', ing: '10kg Carne (cubos), 10cx Creme Leite, 4kg Molho, 1kg Champignon, 10kg Arroz, 3kg Batata Palha', 
-                      st: ['Sele carne aos poucos.', 'Junte molho/ketchup/mostarda.', 'Desligue e ponha creme leite.'] },
-                    { t: 'Jantar: Macarrão', tag: 'tag-jantar', ing: '8kg Macarrão, 5kg Carne Moída, Molho Tomate', st: 'Molho bolonhesa rico. Macarrão al dente.' }
-                ]
-            },
-             {
-                date: '03/jan - Sexta',
-                meals: [
-                     { t: 'Café: Variado', tag: 'tag-café', ing: 'Pães, Ovos, Frios', st: 'Básico.' },
-                     { t: 'Almoço: Leve', tag: 'tag-almoço', ing: 'Arroz, Frango, Salada', st: 'Básico.' },
-                     { t: 'Jantar: Hamburgada', tag: 'tag-jantar', ing: '7kg Carne Moída, 50 Pães, Queijo, Salada, Condimentos', st: ['Molde hambúrgueres de 140g.', 'Grelhe na chapa bem quente.', 'Monte com pão, queijo e salada.'] }
-                ]
-            },
-            {
-                date: '04/jan - Sábado',
-                meals: [
-                     { t: 'Café: Despedida', tag: 'tag-café', ing: 'Tudo que sobrou (Cuscuz/Pão)', st: 'Limpa estoque.' },
-                     { t: 'Almoço: Último', tag: 'tag-almoço', ing: 'Limpa geladeira', st: 'Criatividade com as sobras.' }
-                ]
-            }
-        ];
-
-        var defaultShoppingList = [
-            // Descartáveis
-            { id: '1', category: 'Descartáveis', name: 'Copo desc. 200ml', unit: 'pct', qty: 15, unitPrice: 14.40, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '2', category: 'Descartáveis', name: 'Prato desc.', unit: 'pct', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '3', category: 'Descartáveis', name: 'Talheres desc.', unit: 'pct', qty: 10, unitPrice: 24.00, totalEst: 240.00, realPrice: 0, bought: false },
-            { id: '4', category: 'Descartáveis', name: 'Guardanapo', unit: 'pct', qty: 8, unitPrice: 9.60, totalEst: 76.80, realPrice: 0, bought: false },
-            { id: '5', category: 'Descartáveis', name: 'Papel toalha', unit: 'rolo', qty: 14, unitPrice: 7.80, totalEst: 109.20, realPrice: 0, bought: false },
-            { id: '6', category: 'Descartáveis', name: 'Bandeja alum. G', unit: 'un', qty: 25, unitPrice: 4.20, totalEst: 105.00, realPrice: 0, bought: false },
-            { id: '7', category: 'Descartáveis', name: 'Bandeja alum. M', unit: 'un', qty: 30, unitPrice: 3.36, totalEst: 100.80, realPrice: 0, bought: false },
-            { id: '8', category: 'Descartáveis', name: 'Papel alumínio', unit: 'rolo', qty: 3, unitPrice: 14.40, totalEst: 43.20, realPrice: 0, bought: false },
-            { id: '9', category: 'Descartáveis', name: 'Filme plástico', unit: 'rolo', qty: 3, unitPrice: 9.60, totalEst: 28.80, realPrice: 0, bought: false },
-            // Mercado
-            { id: '10', category: 'Mercado', name: 'Arroz', unit: 'kg', qty: 50, unitPrice: 8.64, totalEst: 432.00, realPrice: 0, bought: false },
-            { id: '11', category: 'Mercado', name: 'Macarrão', unit: 'kg', qty: 16, unitPrice: 10.68, totalEst: 170.88, realPrice: 0, bought: false },
-            { id: '12', category: 'Mercado', name: 'Molho Tomate', unit: 'kg', qty: 14, unitPrice: 14.40, totalEst: 201.60, realPrice: 0, bought: false },
-            // (Removido a pedido do organizador: Óleo será provido no local / não precisa comprar)
-            { id: '14', category: 'Mercado', name: 'Sal', unit: 'kg', qty: 4, unitPrice: 5.40, totalEst: 21.60, realPrice: 0, bought: false },
-            { id: '15', category: 'Mercado', name: 'Açúcar', unit: 'kg', qty: 12, unitPrice: 5.76, totalEst: 69.12, realPrice: 0, bought: false },
-            { id: '16', category: 'Mercado', name: 'Café pó', unit: 'kg', qty: 10, unitPrice: 36.00, totalEst: 360.00, realPrice: 0, bought: false },
-            { id: '17', category: 'Mercado', name: 'Leite', unit: 'L', qty: 60, unitPrice: 5.76, totalEst: 345.60, realPrice: 0, bought: false },
-            { id: '18', category: 'Mercado', name: 'Flocão Milho', unit: 'kg', qty: 16.5, unitPrice: 11.88, totalEst: 196.02, realPrice: 0, bought: false },
-            { id: '19', category: 'Mercado', name: 'Batata palha', unit: 'kg', qty: 6, unitPrice: 37.20, totalEst: 223.20, realPrice: 0, bought: false },
-            { id: '20', category: 'Mercado', name: 'Farofa', unit: 'kg', qty: 9, unitPrice: 22.80, totalEst: 205.20, realPrice: 0, bought: false },
-            { id: '21', category: 'Mercado', name: 'Milho verde', unit: 'lata', qty: 24, unitPrice: 7.20, totalEst: 172.80, realPrice: 0, bought: false },
-            { id: '22', category: 'Mercado', name: 'Ervilha', unit: 'lata', qty: 24, unitPrice: 7.80, totalEst: 187.20, realPrice: 0, bought: false },
-            { id: '23', category: 'Mercado', name: 'Maionese', unit: 'kg', qty: 8, unitPrice: 26.40, totalEst: 211.20, realPrice: 0, bought: false },
-            { id: '24', category: 'Mercado', name: 'Ketchup', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
-            { id: '25', category: 'Mercado', name: 'Mostarda', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
-            { id: '26', category: 'Mercado', name: 'Suco', unit: 'L', qty: 40, unitPrice: 7.80, totalEst: 312.00, realPrice: 0, bought: false },
-            // Açougue
-            { id: '27', category: 'Açougue', name: 'Filé Frango', unit: 'kg', qty: 40, unitPrice: 32.40, totalEst: 1296.00, realPrice: 0, bought: false },
-            { id: '28', category: 'Açougue', name: 'Patinho Moído', unit: 'kg', qty: 21, unitPrice: 53.99, totalEst: 1133.75, realPrice: 0, bought: false },
-            { id: '29', category: 'Açougue', name: 'Maminha', unit: 'kg', qty: 11, unitPrice: 62.40, totalEst: 686.40, realPrice: 0, bought: false },
-            { id: '30', category: 'Açougue', name: 'Contra-filé', unit: 'kg', qty: 6, unitPrice: 65.99, totalEst: 395.93, realPrice: 0, bought: false },
-            { id: '31', category: 'Açougue', name: 'Picanha', unit: 'kg', qty: 4, unitPrice: 83.99, totalEst: 335.95, realPrice: 0, bought: false },
-            { id: '32', category: 'Açougue', name: 'Linguiça', unit: 'kg', qty: 18, unitPrice: 32.39, totalEst: 582.98, realPrice: 0, bought: false },
-            { id: '33', category: 'Açougue', name: 'Tulipa Frango', unit: 'kg', qty: 4, unitPrice: 9.59, totalEst: 38.35, realPrice: 0, bought: false },
-            { id: '34', category: 'Açougue', name: 'Coxinha Asa', unit: 'kg', qty: 4, unitPrice: 21.59, totalEst: 86.35, realPrice: 0, bought: false },
-            { id: '35', category: 'Açougue', name: 'Salsicha', unit: 'kg', qty: 6, unitPrice: 21.60, totalEst: 129.60, realPrice: 0, bought: false },
-            { id: '36', category: 'Açougue', name: 'Hambúrguer', unit: 'kg', qty: 7, unitPrice: 53.99, totalEst: 377.92, realPrice: 0, bought: false },
-            // Hortifruti
-            { id: '37', category: 'Hortifruti', name: 'Alface', unit: 'pé', qty: 40, unitPrice: 5.40, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '38', category: 'Hortifruti', name: 'Tomate', unit: 'kg', qty: 36, unitPrice: 10.68, totalEst: 384.48, realPrice: 0, bought: false },
-            { id: '39', category: 'Hortifruti', name: 'Cebola', unit: 'kg', qty: 20, unitPrice: 9.00, totalEst: 180.00, realPrice: 0, bought: false },
-            { id: '40', category: 'Hortifruti', name: 'Batata', unit: 'kg', qty: 20, unitPrice: 8.28, totalEst: 165.60, realPrice: 0, bought: false },
-            { id: '41', category: 'Hortifruti', name: 'Cenoura', unit: 'kg', qty: 12, unitPrice: 7.80, totalEst: 93.60, realPrice: 0, bought: false },
-            { id: '42', category: 'Hortifruti', name: 'Limão', unit: 'kg', qty: 12, unitPrice: 9.00, totalEst: 108.00, realPrice: 0, bought: false },
-            { id: '43', category: 'Hortifruti', name: 'Pimentão', unit: 'kg', qty: 6, unitPrice: 11.40, totalEst: 68.40, realPrice: 0, bought: false },
-            // Padaria
-            { id: '44', category: 'Padaria', name: 'Pão francês', unit: 'un', qty: 260, unitPrice: 1.20, totalEst: 312.00, realPrice: 0, bought: false },
-            { id: '45', category: 'Padaria', name: 'Pão de hot dog', unit: 'un', qty: 50, unitPrice: 1.44, totalEst: 72.00, realPrice: 0, bought: false },
-            { id: '46', category: 'Padaria', name: 'Pão de hambúrguer', unit: 'un', qty: 50, unitPrice: 1.92, totalEst: 96.00, realPrice: 0, bought: false },
-            { id: '47', category: 'Padaria', name: 'Pão de alho', unit: 'un', qty: 60, unitPrice: 3.36, totalEst: 201.60, realPrice: 0, bought: false },
-            { id: '48', category: 'Padaria', name: 'Ingr. Pão Caseiro', unit: 'kit', qty: 4, unitPrice: 30.00, totalEst: 120.00, realPrice: 0, bought: false },
-            // Bebidas
-            { id: '49', category: 'Bebidas', name: 'Água 20L', unit: 'un', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
-            // --- Itens Adicionados / Recuperados ---
-            { id: '50', category: 'Mercado', name: 'Ovos (Cartela 30un)', unit: 'un', qty: 17, unitPrice: 20.00, totalEst: 340.00, realPrice: 0, bought: false }, // ~500 ovos
-            { id: '51', category: 'Mercado', name: 'Manteiga/Margarina (500g)', unit: 'un', qty: 20, unitPrice: 20.00, totalEst: 400.00, realPrice: 0, bought: false }, // 10kg
-            { id: '52', category: 'Mercado', name: 'Carvão (Saco)', unit: 'un', qty: 5, unitPrice: 35.00, totalEst: 175.00, realPrice: 0, bought: false },
-            { id: '53', category: 'Frios', name: 'Presunto', unit: 'kg', qty: 4, unitPrice: 45.00, totalEst: 180.00, realPrice: 0, bought: false },
-            { id: '54', category: 'Frios', name: 'Mussarela', unit: 'kg', qty: 4, unitPrice: 55.00, totalEst: 220.00, realPrice: 0, bought: false },
-            // (Removido a pedido do organizador: Alho será provido no local / não precisa comprar)
-        ];
-
         var verses = {
             home: { t: "Porém eu e a minha casa serviremos ao Senhor.", r: "Josué 24:15", c: "--yellow" },
             menu: { t: "Quer comais quer bebais... fazei tudo para glória de Deus.", r: "1 Coríntios 10:31", c: "--yellow" },
@@ -459,55 +350,205 @@
             sos: { t: "Deus é o nosso refúgio e fortaleza.", r: "Salmos 46:1", c: "--red" }
         };
 
+        var defaultShoppingList = [
+            // Descartáveis
+            { id: '1', category: 'Descartáveis', name: 'Copo descartável 200ml', unit: 'pct (100 un)', qty: 15, unitPrice: 14.40, totalEst: 216.00, realPrice: 0, bought: false },
+            { id: '2', category: 'Descartáveis', name: 'Prato descartável', unit: 'pct (50 un)', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
+            { id: '3', category: 'Descartáveis', name: 'Talheres descartáveis', unit: 'pct (50 un)', qty: 10, unitPrice: 24.00, totalEst: 240.00, realPrice: 0, bought: false },
+            { id: '4', category: 'Descartáveis', name: 'Guardanapo', unit: 'pct', qty: 8, unitPrice: 9.60, totalEst: 76.80, realPrice: 0, bought: false },
+            { id: '5', category: 'Descartáveis', name: 'Papel toalha', unit: 'rolo', qty: 12, unitPrice: 6.50, totalEst: 78.00, realPrice: 0, bought: false },
+            { id: '6', category: 'Descartáveis', name: 'Bandeja alumínio grande', unit: 'un', qty: 25, unitPrice: 3.50, totalEst: 87.50, realPrice: 0, bought: false },
+            { id: '7', category: 'Descartáveis', name: 'Bandeja alumínio média', unit: 'un', qty: 30, unitPrice: 2.80, totalEst: 84.00, realPrice: 0, bought: false },
+            { id: '8', category: 'Descartáveis', name: 'Papel alumínio', unit: 'rolo', qty: 3, unitPrice: 12.00, totalEst: 36.00, realPrice: 0, bought: false },
+            { id: '9', category: 'Descartáveis', name: 'Filme plástico', unit: 'rolo', qty: 3, unitPrice: 8.00, totalEst: 24.00, realPrice: 0, bought: false },
+            // Mercado
+            { id: '10', category: 'Mercado', name: 'Arroz', unit: 'kg', qty: 50, unitPrice: 7.20, totalEst: 360.00, realPrice: 0, bought: false },
+            { id: '11', category: 'Mercado', name: 'Macarrão seco', unit: 'kg', qty: 16, unitPrice: 8.90, totalEst: 142.40, realPrice: 0, bought: false },
+            { id: '12', category: 'Mercado', name: 'Molho de tomate natural', unit: 'kg', qty: 14, unitPrice: 12.00, totalEst: 168.00, realPrice: 0, bought: false },
+            { id: '13', category: 'Mercado', name: 'Óleo', unit: 'L', qty: 6, unitPrice: 8.50, totalEst: 51.00, realPrice: 0, bought: false },
+            { id: '14', category: 'Mercado', name: 'Sal refinado', unit: 'kg', qty: 4, unitPrice: 4.50, totalEst: 18.00, realPrice: 0, bought: false },
+            { id: '15', category: 'Mercado', name: 'Açúcar', unit: 'kg', qty: 12, unitPrice: 4.80, totalEst: 57.60, realPrice: 0, bought: false },
+            { id: '16', category: 'Mercado', name: 'Café em pó', unit: 'kg', qty: 10, unitPrice: 30.00, totalEst: 300.00, realPrice: 0, bought: false },
+            { id: '17', category: 'Mercado', name: 'Leite', unit: 'L', qty: 60, unitPrice: 4.80, totalEst: 288.00, realPrice: 0, bought: false },
+            { id: '18', category: 'Mercado', name: 'Flocão de milho (cuscuz)', unit: 'kg', qty: 16.5, unitPrice: 9.90, totalEst: 163.35, realPrice: 0, bought: false },
+            { id: '19', category: 'Mercado', name: 'Batata palha', unit: 'kg', qty: 6, unitPrice: 31.00, totalEst: 186.00, realPrice: 0, bought: false },
+            { id: '20', category: 'Mercado', name: 'Farofa', unit: 'kg', qty: 9, unitPrice: 19.00, totalEst: 171.00, realPrice: 0, bought: false },
+            { id: '21', category: 'Mercado', name: 'Milho verde', unit: 'lata', qty: 24, unitPrice: 6.00, totalEst: 144.00, realPrice: 0, bought: false },
+            { id: '22', category: 'Mercado', name: 'Ervilha', unit: 'lata', qty: 24, unitPrice: 6.50, totalEst: 156.00, realPrice: 0, bought: false },
+            { id: '23', category: 'Mercado', name: 'Maionese', unit: 'kg', qty: 8, unitPrice: 22.00, totalEst: 176.00, realPrice: 0, bought: false },
+            { id: '24', category: 'Mercado', name: 'Ketchup', unit: 'kg', qty: 4, unitPrice: 12.00, totalEst: 48.00, realPrice: 0, bought: false },
+            { id: '25', category: 'Mercado', name: 'Mostarda', unit: 'kg', qty: 4, unitPrice: 12.00, totalEst: 48.00, realPrice: 0, bought: false },
+            { id: '26', category: 'Mercado', name: 'Suco natural', unit: 'L', qty: 40, unitPrice: 6.50, totalEst: 260.00, realPrice: 0, bought: false },
+            // Açougue
+            { id: '27', category: 'Açougue', name: 'Filé Frango', unit: 'kg', qty: 40, unitPrice: 27.00, totalEst: 1080.00, realPrice: 0, bought: false },
+            { id: '28', category: 'Açougue', name: 'Patinho Moído', unit: 'kg', qty: 21, unitPrice: 44.99, totalEst: 944.79, realPrice: 0, bought: false },
+            { id: '29', category: 'Açougue', name: 'Maminha', unit: 'kg', qty: 11, unitPrice: 52.00, totalEst: 572.00, realPrice: 0, bought: false },
+            { id: '30', category: 'Açougue', name: 'Contra-filé', unit: 'kg', qty: 6, unitPrice: 54.99, totalEst: 329.94, realPrice: 0, bought: false },
+            { id: '31', category: 'Açougue', name: 'Picanha', unit: 'kg', qty: 4, unitPrice: 69.99, totalEst: 279.96, realPrice: 0, bought: false },
+            { id: '32', category: 'Açougue', name: 'Linguiça', unit: 'kg', qty: 18, unitPrice: 26.99, totalEst: 485.82, realPrice: 0, bought: false },
+            { id: '33', category: 'Açougue', name: 'Tulipa Frango', unit: 'kg', qty: 4, unitPrice: 7.99, totalEst: 31.96, realPrice: 0, bought: false },
+            { id: '34', category: 'Açougue', name: 'Coxinha Asa', unit: 'kg', qty: 4, unitPrice: 17.99, totalEst: 71.96, realPrice: 0, bought: false },
+            { id: '35', category: 'Açougue', name: 'Salsicha', unit: 'kg', qty: 6, unitPrice: 18.00, totalEst: 108.00, realPrice: 0, bought: false },
+            { id: '36', category: 'Açougue', name: 'Hambúrguer (patinho)', unit: 'kg', qty: 7, unitPrice: 44.99, totalEst: 314.93, realPrice: 0, bought: false },
+            // Hortifruti
+            { id: '37', category: 'Hortifruti', name: 'Alface', unit: 'pé', qty: 40, unitPrice: 4.50, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '38', category: 'Hortifruti', name: 'Tomate', unit: 'kg', qty: 36, unitPrice: 8.90, totalEst: 320.40, realPrice: 0, bought: false },
+            { id: '39', category: 'Hortifruti', name: 'Cebola', unit: 'kg', qty: 20, unitPrice: 7.50, totalEst: 150.00, realPrice: 0, bought: false },
+            { id: '40', category: 'Hortifruti', name: 'Batata', unit: 'kg', qty: 20, unitPrice: 6.90, totalEst: 138.00, realPrice: 0, bought: false },
+            { id: '41', category: 'Hortifruti', name: 'Cenoura', unit: 'kg', qty: 12, unitPrice: 6.50, totalEst: 78.00, realPrice: 0, bought: false },
+            { id: '42', category: 'Hortifruti', name: 'Limão', unit: 'kg', qty: 12, unitPrice: 7.50, totalEst: 90.00, realPrice: 0, bought: false },
+            { id: '43', category: 'Hortifruti', name: 'Pimentão', unit: 'kg', qty: 6, unitPrice: 9.50, totalEst: 57.00, realPrice: 0, bought: false },
+             { id: '55', category: 'Hortifruti', name: 'Alho', unit: 'kg', qty: 1, unitPrice: 30.00, totalEst: 30.00, realPrice: 0, bought: false },
+            // Padaria
+            { id: '44', category: 'Padaria', name: 'Pão francês', unit: 'un', qty: 260, unitPrice: 1.00, totalEst: 260.00, realPrice: 0, bought: false },
+            { id: '45', category: 'Padaria', name: 'Pão de hot dog', unit: 'un', qty: 50, unitPrice: 1.20, totalEst: 60.00, realPrice: 0, bought: false },
+            { id: '46', category: 'Padaria', name: 'Pão de hambúrguer', unit: 'un', qty: 50, unitPrice: 1.60, totalEst: 80.00, realPrice: 0, bought: false },
+            { id: '47', category: 'Padaria', name: 'Pão de alho', unit: 'un', qty: 60, unitPrice: 2.80, totalEst: 168.00, realPrice: 0, bought: false },
+            { id: '48', category: 'Padaria', name: 'Ingr. Pão Caseiro', unit: 'kit', qty: 4, unitPrice: 25.00, totalEst: 100.00, realPrice: 0, bought: false },
+            // Bebidas
+            { id: '49', category: 'Bebidas', name: 'Água 20L', unit: 'un', qty: 10, unitPrice: 20.00, totalEst: 200.00, realPrice: 0, bought: false },
+             { id: '50', category: 'Bebidas', name: 'Suco Natural Campo Verde', unit: 'L', qty: 40, unitPrice: 6.50, totalEst: 260.00, realPrice: 0, bought: false },
+            // Frios/Laticinios/Outros
+            { id: '51', category: 'Frios e Laticínios', name: 'Ovos (Cartela 30un)', unit: 'un', qty: 17, unitPrice: 18.00, totalEst: 306.00, realPrice: 0, bought: false },
+            { id: '52', category: 'Frios e Laticínios', name: 'Manteiga/Margarina (500g)', unit: 'un', qty: 20, unitPrice: 18.00, totalEst: 360.00, realPrice: 0, bought: false },
+            { id: '53', category: 'Frios e Laticínios', name: 'Presunto', unit: 'kg', qty: 4, unitPrice: 38.00, totalEst: 152.00, realPrice: 0, bought: false },
+            { id: '54', category: 'Frios e Laticínios', name: 'Mussarela', unit: 'kg', qty: 4, unitPrice: 48.00, totalEst: 192.00, realPrice: 0, bought: false },
+             { id: '55', category: 'Mercado', name: 'Carvão (Saco)', unit: 'un', qty: 5, unitPrice: 35.00, totalEst: 175.00, realPrice: 0, bought: false },
+             // Limpeza
+             { id: '56', category: 'Limpeza / Uso Geral', name: 'Detergente', unit: 'un', qty: 5, unitPrice: 2.50, totalEst: 12.50, realPrice: 0, bought: false },
+            { id: '57', category: 'Limpeza / Uso Geral', name: 'Esponja', unit: 'pct', qty: 2, unitPrice: 5.00, totalEst: 10.00, realPrice: 0, bought: false },
+            { id: '58', category: 'Limpeza / Uso Geral', name: 'Saco de Lixo 100L', unit: 'pct', qty: 2, unitPrice: 15.00, totalEst: 30.00, realPrice: 0, bought: false },
+            { id: '59', category: 'Limpeza / Uso Geral', name: 'Papel Higiênico (Fardo)', unit: 'un', qty: 4, unitPrice: 25.00, totalEst: 100.00, realPrice: 0, bought: false },
+            { id: '60', category: 'Limpeza / Uso Geral', name: 'Pano de Prato', unit: 'un', qty: 5, unitPrice: 5.00, totalEst: 25.00, realPrice: 0, bought: false },
+             { id: '61', category: 'Limpeza / Uso Geral', name: 'Fósforo / Isqueiro', unit: 'un', qty: 2, unitPrice: 5.00, totalEst: 10.00, realPrice: 0, bought: false }
+        ];
+
+        var recipesData = [
+            {
+                date: '30/dez - Terça',
+                meals: [
+                    { t: 'Café: Pão com Ovos', tag: 'tag-café', ing: '65 Pães franceses, 2kg Manteiga, 100 Ovos, 10L Leite, 2kg Café, 3kg Açúcar', 
+                      st: ['Prepare café em garrafas térmicas.', 'Aqueça o leite sem ferver.', 'Corte os pães.', 'Faça ovos mexidos em levas de 20-30 para não esfriar.'] },
+                    { t: 'Almoço: PF Frango', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Filé de Frango, 10 Alfaces, 8kg Tomate, 2L Óleo, 3kg Cebola', 
+                      st: ['Arroz: refogue bem.', 'Frango: chapa quente aos poucos.', 'Salada: higienizar.'] },
+                    { t: 'Jantar: Hot Dog', tag: 'tag-jantar', ing: '65 Pães Hot Dog, 10kg Salsicha, 6kg Molho, 8kg Batata (Purê), 2L Leite, 2kg Batata Palha', 
+                      st: ['Purê: cozinhe batatas, amasse com leite/manteiga.', 'Salsicha: ferva antes, depois molho.', 'Servir: estação de montagem.'] }
+                ]
+            },
+            {
+                date: '31/dez - Quarta',
+                meals: [
+                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, 2kg Queijo, 1kg Manteiga, 100 Ovos, 10L Leite', 
+                      st: ['Hidrate flocão (500ml/pct). Cozinhe vapor. Sirva com queijo/ovo.'] },
+                    { t: 'Almoço: Leve', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Frango, Salada', st: 'Repetir preparo básico. Manter leve para a ceia.' },
+                    { t: 'Jantar: CHURRASCO VIRADA', tag: 'tag-jantar', ing: '6kg Picanha, 8kg Contra, 10kg Linguiça, 5kg Tulipa, 5kg Coxinha, 30 Pães Alho, 5kg Farofa, Vinagrete', 
+                      st: ['Acenda carvão cedo.', 'Comece por linguiça/frango/pão alho.', 'Salgue carnes nobres com sal grosso na hora.'] }
+                ]
+            },
+            {
+                date: '01/jan - Quinta',
+                meals: [
+                    { t: 'Café: Ressaca', tag: 'tag-café', ing: '65 Pães, Frios, Ovos, Café forte', st: 'Praticidade.' },
+                    { t: 'Almoço: Churrasco Cont.', tag: 'tag-almoço', ing: '8kg Maminha, Carnes restantes, Arroz, Farofa', st: 'Reacenda churrasqueira. Asse Maminha. Arroz fresco.' },
+                    { t: 'Jantar: Pastel', tag: 'tag-jantar', ing: '10 rolos Massa, 5kg Carne Moída, 3kg Queijo, 3L Óleo', st: 'Refogue carne bem seca. Rale queijo. Monte pastéis. Frite em imersão quente.' }
+                ]
+            },
+            {
+                date: '02/jan - Sexta',
+                meals: [
+                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, Queijo, Ovos', st: 'Cuscuz tradicional.' },
+                    { t: 'Almoço: Strogonoff', tag: 'tag-almoço', ing: '10kg Carne (cubos), 10cx Creme Leite, 4kg Molho, 1kg Champignon, 10kg Arroz, 3kg Batata Palha', 
+                      st: ['Sele carne aos poucos.', 'Junte molho/ketchup/mostarda.', 'Desligue e ponha creme leite.'] },
+                    { t: 'Jantar: Macarrão', tag: 'tag-jantar', ing: '8kg Macarrão, 5kg Carne Moída, Molho Tomate', st: 'Molho bolonhesa rico. Macarrão al dente.' }
+                ]
+            },
+             {
+                date: '03/jan - Sábado',
+                meals: [
+                     { t: 'Café: Variado', tag: 'tag-café', ing: 'Pães, Ovos, Frios', st: 'Básico.' },
+                     { t: 'Almoço: Leve', tag: 'tag-almoço', ing: 'Arroz, Frango, Salada', st: 'Básico.' },
+                     { t: 'Jantar: Hamburgada', tag: 'tag-jantar', ing: '7kg Carne Moída, 50 Pães, Queijo, Salada, Condimentos', st: ['Molde hambúrgueres de 140g.', 'Grelhe na chapa bem quente.', 'Monte com pão, queijo e salada.'] }
+                ]
+            },
+            {
+                date: '04/jan - Domingo',
+                meals: [
+                     { t: 'Café: Despedida', tag: 'tag-café', ing: 'Tudo que sobrou (Cuscuz/Pão)', st: 'Limpa estoque.' },
+                     { t: 'Almoço: Último', tag: 'tag-almoço', ing: 'Limpa geladeira', st: 'Criatividade com as sobras.' }
+                ]
+            }
+        ];
+
         // --- Logic ---
         var app = {
             state: { shoppingList: [] },
-
-            // Normaliza / migra a lista salva (para não “perder” dados antigos ao atualizar o site)
-            sanitizeShoppingList: function(list) {
-                if(!Array.isArray(list)) return defaultShoppingList.map(function(i){ return { ...i, bought:false, realUnit:0 }; });
-
-                // 1) Remover itens que o organizador pediu para NÃO incluir
-                var blocked = ['óleo', 'óleo de soja', 'alho'];
-                var cleaned = list.filter(function(it){
-                    var n = String(it && it.name ? it.name : '').toLowerCase().trim();
-                    // remove somente os itens explicitamente bloqueados
-                    return blocked.indexOf(n) === -1;
-                });
-
-                // 2) Garantir que “Suco natural” exista (caso alguém tenha uma versão antiga sem suco)
-                var hasJuice = cleaned.some(function(it){
-                    var n = String(it && it.name ? it.name : '').toLowerCase();
-                    return n.includes('suco');
-                });
-                if(!hasJuice) {
-                    cleaned.push({ id: '26', category: 'Mercado', name: 'Suco natural', unit: 'L', qty: 40, unitPrice: 7.80, totalEst: 312.00, realPrice: 0, bought: false, realUnit: 0 });
-                }
-
-                return cleaned;
-            },
             
             init: function() {
-                var saved = localStorage.getItem('family_final_v10');
-                if(saved) { this.state.shoppingList = this.sanitizeShoppingList(JSON.parse(saved)); }
-                else { this.state.shoppingList = this.sanitizeShoppingList(null); }
+                // Storage: keep compatibility with previous keys without losing data
+                var STORAGE_KEYS = [
+                    'family_final_v14',
+                    'family_final_v13',
+                    'family_final_v12',
+                    'family_final_v11',
+                    'family_final_v10',
+                    'family_shopping_list_final_v3'
+                ];
 
-                // Persistir após migração, para garantir consistência entre dispositivos
-                this.save();
+                var foundKey = null;
+                var raw = null;
+                for (var i = 0; i < STORAGE_KEYS.length; i++) {
+                    var k = STORAGE_KEYS[i];
+                    var v = localStorage.getItem(k);
+                    if (v && v.trim()) { foundKey = k; raw = v; break; }
+                }
+
+                if (raw) {
+                    try {
+                        var parsed = JSON.parse(raw);
+
+                        // If older key stored only the shopping list, normalize.
+                        if (Array.isArray(parsed)) {
+                            this.state.shoppingList = parsed;
+                        } else if (parsed && Array.isArray(parsed.shoppingList)) {
+                            this.state.shoppingList = parsed.shoppingList;
+                        } else {
+                            // Unexpected shape: preserve current defaults (failsafe)
+                            this.state.shoppingList = defaultShoppingList.map(function(item) {
+                                return Object.assign({}, item, { bought: false, realUnit: 0 });
+                            });
+                        }
+
+                        // migrate to the latest key to consolidate
+                        if (foundKey !== 'family_final_v14') {
+                            localStorage.setItem('family_final_v14', JSON.stringify(this.state.shoppingList));
+                        }
+                    } catch (e) {
+                        // Corrupted storage: fall back safely
+                        this.state.shoppingList = defaultShoppingList.map(function(item) {
+                            return Object.assign({}, item, { bought: false, realUnit: 0 });
+                        });
+                    }
+                } else {
+                    this.state.shoppingList = defaultShoppingList.map(function(item) {
+                        return Object.assign({}, item, { bought: false, realUnit: 0 });
+                    });
+                }
+
                 this.navigate('home');
             },
 
             save: function() {
-                localStorage.setItem('family_final_v10', JSON.stringify(this.state.shoppingList));
+                localStorage.setItem('family_final_v14', JSON.stringify(this.state.shoppingList));
                 this.updateTotals();
             },
             
             resetData: function() {
-                if(confirm('Resetar lista?')) {
-                    localStorage.removeItem('family_final_v10');
+                if (confirm('Resetar lista e dados salvos neste navegador?')) {
+                    var keys = ['family_final_v14','family_final_v13','family_final_v12','family_final_v11','family_final_v10','family_shopping_list_final_v3'];
+                    for (var i = 0; i < keys.length; i++) localStorage.removeItem(keys[i]);
                     location.reload();
                 }
-            },
+            }},
             
             exportData: function() {
                 var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.shoppingList));
@@ -621,7 +662,7 @@
             navigate: function(tab) {
                 document.querySelectorAll('.tab-btn').forEach(function(btn) {
                     btn.classList.remove('active');
-                    btn.classList.remove('active-home', 'active-menu', 'active-cleaning', 'active-shopping', 'active-recipes', 'active-members', 'active-contacts', 'active-sos');
+                    btn.classList.remove('active-home', 'active-menu', 'active-cleaning', 'active-shopping', 'active-recipes', 'active-members', 'active-contacts', 'active-sos', 'active-fun');
                     
                     if(btn.id === 'btn-' + tab) {
                         btn.classList.add('active');
