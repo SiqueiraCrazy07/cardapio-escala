@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Organizador Família - Fim de Ano</title>
+    <style>
+        :root {
+            /* Palette Completa */
+            --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1;
+            --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
+            
+            --yellow-50: #fefce8; --yellow-100: #fef9c3; --yellow-500: #eab308; --yellow-600: #ca8a04;
+            --amber-600: #d97706;
+            
+            --blue-50: #eff6ff; --blue-100: #dbeafe; --blue-400: #60a5fa; --blue-600: #2563eb; --blue-700: #1d4ed8;
+            
+            --green-50: #f0fdf4; --green-100: #dcfce7; --green-500: #22c55e; --green-600: #16a34a; --green-700: #15803d;
+
+            --red-50: #fef2f2; --red-100: #fee2e2; --red-600: #dc2626;
+
+            --orange-100: #ffedd5; --orange-600: #ea580c;
+            --indigo-100: #e0e7ff; --indigo-600: #4f46e5;
+            --teal-50: #f0fdfa; --teal-100: #ccfbf1; --teal-600: #0d9488;
+            --rose-50: #fff1f2; --rose-100: #ffe4e6; --rose-500: #f43f5e; --rose-600: #e11d48;
+            --purple-50: #faf5ff; --purple-100: #f3e8ff; --purple-500: #a855f7; --purple-600: #9333ea;
+        
+            --indigo-50: #eef2ff;
+            --indigo-100: #e0e7ff;
+            --indigo-400: #818cf8;
+            --indigo-600: #4f46e5;
+}
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--slate-50);
+            color: var(--slate-700);
+            margin: 0;
+            padding-bottom: 140px;
+            line-height: 1.5;
+        }
+
+        /* --- Layout --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+        .text-center { text-align: center; }
+        .hidden { display: none !important; }
+        
+        /* --- Typography --- */
+        h1 { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.025em; }
+        .subtitle { color: var(--yellow-50); opacity: 0.95; margin-top: 2px; font-weight: 500; font-size: 0.85rem; }
+        .font-bold { font-weight: 700; }
+        .text-sm { font-size: 0.85rem; }
+        .text-xs { font-size: 0.75rem; }
+        .uppercase { text-transform: uppercase; }
+
+        /* --- Header --- */
+        .header {
+            background: linear-gradient(135deg, var(--amber-600), var(--yellow-500));
+            color: white;
+            padding: 30px 20px 60px;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .location-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white; padding: 8px 16px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            margin-top: 16px; border: 1px solid rgba(255,255,255,0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        /* --- Navigation Tabs --- */
+        .tabs-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 16px;
+            margin-top: -50px;
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .tabs-wrapper::-webkit-scrollbar { display: none; }
+        
+        .tabs { display: flex; gap: 8px; padding-bottom: 5px; }
+        
+        .tab-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 10px 14px; border-radius: 12px;
+            font-weight: 600; border: none; cursor: pointer;
+            font-size: 0.85rem;
+            background-color: rgba(255,255,255,0.95);
+            color: var(--slate-500);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            flex-shrink: 0;
+            border: 1px solid transparent;
+        }
+        .tab-btn.active { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: white; }
+        
+        /* Active Colors */
+        .tab-btn.active-home { color: var(--slate-800); border-color: var(--slate-700); }
+        .tab-btn.active-menu { color: var(--yellow-600); border-color: var(--yellow-500); }
+        .tab-btn.active-cleaning { color: var(--blue-600); border-color: var(--blue-400); }
+        .tab-btn.active-shopping { color: var(--green-600); border-color: var(--green-500); }
+        .tab-btn.active-recipes { color: var(--rose-600); border-color: var(--rose-500); }
+        .tab-btn.active-members { color: var(--purple-600); border-color: var(--purple-500); }
+        .tab-btn.active-contacts { color: var(--slate-600); border-color: var(--slate-400); }
+        .tab-btn.active-sos { color: var(--red-600); border-color: var(--red-600); }
+
+        /* --- Cards --- */
+        .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+        @media(min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        
+        .card {
+            background: white; border-radius: 16px;
+            border: 1px solid var(--slate-200);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            margin-bottom: 12px;
+        }
+        .card.special { border: 2px solid var(--yellow-500); }
+        .card-header { 
+            padding: 12px 16px; border-bottom: 1px solid var(--slate-100); 
+            display: flex; justify-content: space-between; align-items: center; 
+            cursor: pointer; user-select: none;
+            transition: background 0.2s;
+        }
+        .card-body { padding: 16px; display: block; }
+        .card-body.collapsed { display: none; }
+
+        /* Helpers */
+        .bg-yellow-light { background: linear-gradient(to right, #fffbeb, #fef3c7); }
+        .bg-blue-light { background: linear-gradient(to right, #eff6ff, #dbeafe); }
+        .bg-red-light { background: linear-gradient(to right, #fef2f2, #fee2e2); }
+        .bg-purple-light { background: linear-gradient(to right, #faf5ff, #f3e8ff); }
+        .bg-rose-light { background: linear-gradient(to right, #fff1f2, #ffe4e6); }
+        .bg-orange-100 { background: var(--orange-100); color: var(--orange-600); }
+        .bg-yellow-100 { background: var(--yellow-100); color: var(--yellow-600); }
+        .bg-indigo-100 { background: var(--indigo-100); color: var(--indigo-600); }
+
+        .item-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+        .item-row:last-child { margin-bottom: 0; }
+        .icon-box { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+        
+        .item-content { flex: 1; }
+        .item-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+        .item-title { font-weight: 600; color: var(--slate-700); font-size: 0.9rem; }
+        .item-desc { font-size: 0.8rem; color: var(--slate-500); line-height: 1.3; }
+
+        /* --- Shopping List --- */
+        .shopping-toolbar { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; padding: 12px; background: white; border-radius: 12px; border: 1px solid var(--slate-200); }
+        .search-bar { width: 100%; padding: 8px 12px; border: 1px solid var(--slate-300); border-radius: 8px; font-size: 0.9rem; }
+        .filters { display: flex; gap: 6px; }
+        .filter-btn { padding: 4px 10px; border-radius: 20px; border: 1px solid var(--slate-300); background: white; color: var(--slate-600); font-size: 0.75rem; cursor: pointer; white-space: nowrap; }
+        .filter-btn.active { background: var(--green-600); color: white; border-color: var(--green-600); }
+        .tools-row { display: flex; justify-content: space-between; margin-top: 4px; }
+        .action-btn { font-size: 0.75rem; text-decoration: underline; color: var(--slate-500); background: none; border: none; padding: 0; cursor: pointer; }
+
+        .shopping-table-container { border-radius: 12px; border: 1px solid var(--slate-200); background: white; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); overflow: hidden; }
+        .shopping-category-header { background-color: var(--slate-100); padding: 10px 14px; font-weight: 700; color: var(--slate-700); border-bottom: 1px solid var(--slate-200); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+        
+        .shop-item { display: grid; grid-template-columns: 24px 1fr; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--slate-100); }
+        .shop-item:last-child { border-bottom: none; }
+        .shop-item.bought { background-color: var(--green-50); }
+        .shop-item.bought .shop-name { text-decoration: line-through; opacity: 0.6; }
+        
+        .shop-name { font-size: 0.9rem; font-weight: 600; color: var(--slate-700); }
+        .shop-meta { font-size: 0.75rem; color: var(--slate-400); margin-top: 2px; }
+        .shop-inputs { grid-column: 2 / -1; display: flex; justify-content: space-between; align-items: center; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--slate-100); }
+        
+        .price-input-real { width: 70px; padding: 4px 6px; border: 1px solid var(--slate-300); border-radius: 6px; text-align: right; font-weight: 700; color: var(--green-700); font-size: 0.85rem; }
+        .checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: var(--green-600); margin-top: 2px; }
+
+        /* --- Floating Total --- */
+        .floating-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--slate-800); color: white; padding: 10px 20px; border-radius: 50px; display: none; align-items: center; gap: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 1000; width: 90%; max-width: 360px; justify-content: space-around; }
+        .float-group { display: flex; flex-direction: column; align-items: center; }
+        .float-label { font-size: 0.6rem; text-transform: uppercase; color: var(--slate-400); }
+        .float-val { font-weight: 700; font-size: 1rem; }
+
+        /* --- Verse --- */
+        .verse-box { text-align: center; padding: 20px 16px; margin-top: 10px; border-top: 1px solid var(--slate-200); display: none; }
+        .verse-text { font-family: Georgia, serif; font-style: italic; color: var(--slate-600); font-size: 1rem; margin-bottom: 6px; }
+        .verse-ref { font-weight: 700; color: var(--slate-400); font-size: 0.75rem; text-transform: uppercase; }
+
+        /* --- Home --- */
+        .welcome-card { background: white; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--slate-200); position: relative; overflow: hidden; margin-bottom: 16px; }
+        .welcome-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--amber-600), var(--yellow-500)); }
+        .welcome-title { font-size: 1.2rem; font-weight: 800; color: var(--slate-800); margin-bottom: 6px; }
+        .verse-highlight { background-color: var(--yellow-50); padding: 16px 12px; border-radius: 12px; text-align: center; border: 2px dashed var(--yellow-200); position: relative; margin-top: 12px; }
+        .verse-highlight-text { font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: var(--slate-700); margin-bottom: 6px; line-height: 1.4; }
+        .verse-highlight-ref { font-weight: 800; font-size: 0.75rem; color: var(--yellow-600); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+        .nav-card { background: white; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid var(--slate-200); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .nav-card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .nav-card-title { font-weight: 700; color: var(--slate-700); font-size: 0.85rem; }
+        
+        /* Recipe Specifics */
+        .recipe-list { padding-left: 20px; margin: 4px 0 12px 0; font-size: 0.9rem; color: var(--slate-600); }
+        .recipe-list li { margin-bottom: 4px; }
+        .recipe-section-title { font-size: 0.7rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px; margin-top: 12px; }
+        .recipe-tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .tag-café { background: var(--orange-100); color: var(--orange-600); }
+        .tag-almoço { background: var(--yellow-100); color: var(--yellow-600); }
+        .tag-jantar { background: var(--indigo-100); color: var(--indigo-600); }
+        .ingredients-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 6px; }
+        .ingredients-list li { font-size: 0.85rem; color: var(--slate-600); padding: 4px 8px; background-color: var(--slate-50); border-radius: 4px; border: 1px solid var(--slate-100); }
+        .steps-list { padding-left: 20px; margin: 0; color: var(--slate-600); font-size: 0.9rem; line-height: 1.4; }
+        .steps-list li { margin-bottom: 6px; }
+        
+        /* Others */
+        .contact-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--slate-100); }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-link { display: inline-block; font-size: 0.75rem; color: var(--blue-600); font-weight: 600; text-decoration: none; background: var(--blue-50); padding: 4px 8px; border-radius: 6px; margin-top: 4px; }
+        .sos-alert { background-color: var(--red-50); border: 1px solid var(--red-100); color: var(--red-600); padding: 12px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; margin-top: 8px; }
+        
+        .chevron { transition: transform 0.2s; color: var(--slate-400); width: 16px; height: 16px; }
+        .chevron.rotated { transform: rotate(-90deg); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Família Reunida</h1>
+        <p class="subtitle">Fim de Ano 2025/2026</p>
+        <a href="https://maps.app.goo.gl/JwUkEGykifmq9f3m9" target="_blank" class="location-btn">
+            📍 Ver Localização
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="tabs-wrapper">
+            <div class="tabs">
+                <button id="btn-home" class="tab-btn active" onclick="app.navigate('home')">🏠 Início</button>
+                <button id="btn-menu" class="tab-btn" onclick="app.navigate('menu')">🍽️ Cardápio</button>
+                <button id="btn-cleaning" class="tab-btn" onclick="app.navigate('cleaning')">🧹 Escala</button>
+                <button id="btn-shopping" class="tab-btn" onclick="app.navigate('shopping')">🛒 Compras</button>
+                <button id="btn-recipes" class="tab-btn" onclick="app.navigate('recipes')">👨‍🍳 Preparo</button>
+                <button id="btn-members" class="tab-btn" onclick="app.navigate('members')">👥 Pessoas</button>
+                <button id="btn-contacts" class="tab-btn" onclick="app.navigate('contacts')">📞 Contatos</button>
+                <button id="btn-sos" class="tab-btn" onclick="app.navigate('sos')">🚑 SOS</button>
+            </div>
+        </div>
+
+        <div id="app-content"></div>
+
+        <!-- Verse Footer -->
+        <div id="verse-footer" class="verse-box">
+            <div id="verse-card" class="card" style="display:inline-block; border:1px solid; padding:20px; border-radius:16px; max-width: 600px;">
+                <p class="verse-text" id="verse-text">"..."</p>
+                <p class="verse-ref" id="verse-ref">REF</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Shopping Total -->
+    <div id="shopping-float" class="floating-bar">
+        <div class="float-group"><span class="float-label">Real</span><span class="float-val" id="total-real">R$ 0,00</span></div>
+        <div style="width:1px; height:20px; background:rgba(255,255,255,0.3)"></div>
+        <div class="float-group"><span class="float-label">Orçado</span><span class="float-val" style="color:var(--slate-400)" id="total-est">R$ 0,00</span></div>
+    </div>
+
+    <script>
+        // --- 1. GLOBAL VARIABLES ---
+        var contentArea = document.getElementById('app-content');
+        var footerVerseContainer = document.getElementById('verse-footer');
+        var floatingTotal = document.getElementById('shopping-float');
+        var verseText = document.getElementById('verse-text');
+        var verseRef = document.getElementById('verse-ref');
+        var verseCard = document.getElementById('verse-card');
+        var totalPriceDisplay = document.getElementById('total-price-display');
+        var totalEstimateDisplay = document.getElementById('total-estimate-display');
+
+        // --- 2. ICONS ---
+        var Icons = {
+            Coffee: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 0 1 4 4v1a4 4 0 0 1-4 4h-1"/><path d="M6 2v2"/></svg>`,
+            Sun: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41-1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+            Moon: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+            Star: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+            Utensils: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>`,
+            Calendar: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>`,
+            PartyPopper: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>`,
+            ChefHat: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>`,
+            Sandwich: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v3a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3"/><path d="M12 19H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3.83"/><path d="m3 11 7.77-6.04a2 2 0 0 1 2.46 0L21 11H3Z"/><path d="M12.97 19.77 7 15h12.5l-4.27 4.77Z"/></svg>`,
+            UtensilsCrossed: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8"/><path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7"/><path d="m2.1 21.8 6.4-6.3"/><path d="m19 5-7 7"/></svg>`,
+            Droplets: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>`,
+            HeartHandshake: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+            BookOpen: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+            ChevronRight: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`,
+            Users: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+            Phone: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`
+        };
+
+        // --- 3. DADOS ---
+        var membersMap = {
+            'G1-M': 'David, Juliano', 'G2-M': 'Davi, Dirceu, Jhow', 'G3-M': 'Rafael, Felipe', 'G4-M': 'Vinicius, Guilherme',
+            'G1-F': 'Thalyta, Vitória, Rose', 'G2-F': 'Denise, Bruna, Eliane', 'G3-F': 'Jaqueline, Neia, Michele'
+        };
+
+        var menuData = [
+          { date: '29/dez', day: 'Domingo', empty: true, note: 'Chegada / Organização (Sem refeição oficial)' },
+          { date: '30/dez', day: 'Segunda', b: {t:'Café Frio', i:'Pão francês, presunto e queijo'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Noite do Hot Dog', i:'Hot Dog completo com purê'} },
+          { date: '31/dez', day: 'Terça', highlight: true, b: {t:'Cuscuz Nordestino', i:'Cuscuz, ovo, queijo'}, l: {t:'Pré-Réveillon', i:'Filé de frango, arroz e purê/salada'}, d: {t:'✨ CHURRASCO DA VIRADA ✨', i:'Carnes, acompanhamentos e festa!'} },
+          { date: '01/jan', day: 'Quarta', highlight: true, b: {t:'Café da Ressaca', i:'Frio (pão francês, presunto, queijo)'}, l: {t:'✨ Churrasco de Ano Novo ✨', i:'Continuação da festa'}, d: {t:'Noite do Pastel', i:'Pastel de carne e queijo'} },
+          { date: '02/jan', day: 'Quinta', b: {t:'Café Nordestino', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Almoço Favorito', i:'Strogonoff de carne, arroz e batata palha'}, d: {t:'Noite do Macarrão', i:'Macarrão com carne moída'} },
+          { date: '03/jan', day: 'Sexta', b: {t:'Café Variado', i:'Pães variados e ovos'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Hamburgada', i:'Hambúrguer artesanal'} },
+          { date: '04/jan', day: 'Sábado', b: {t:'Café da Despedida', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Último Almoço', i:'Filé de frango, arroz e purê/salada'}, d: null }
+        ];
+
+        var cleaningData = [
+          { date: '30/dez', cafe: 'G4-M', almocoM: 'G3-F', almocoL: 'G1-M', jantarM: 'G2-F', jantarL: 'G2-M' },
+          { date: '31/dez', cafe: 'G3-M', almocoM: 'G1-F', almocoL: 'G4-M', jantarM: 'G3-F', jantarL: 'G1-M' },
+          { date: '01/jan', cafe: 'G2-M', almocoM: 'G2-F', almocoL: 'G3-M', jantarM: 'G1-F', jantarL: 'G4-M' },
+          { date: '02/jan', cafe: 'G4-M', almocoM: 'G1-F', almocoL: 'G1-M', jantarM: 'G2-F', jantarL: 'G2-M' },
+          { date: '03/jan', cafe: 'G1-M', almocoM: 'G2-F', almocoL: 'G4-M', jantarM: 'G3-F', jantarL: 'G1-M' },
+          { date: '04/jan', cafe: 'G3-M', almocoM: 'G3-F', almocoL: 'G2-M', jantarM: '-', jantarL: '-' }
+        ];
+
+        var membersGroups = [
+            { id: 'G1', color: 'blue', female: 'Thalyta, Vitória, Rose', male: 'David, Juliano' },
+            { id: 'G2', color: 'orange', female: 'Denise, Bruna, Eliane', male: 'Davi, Dirceu, Jhow' },
+            { id: 'G3', color: 'green', female: 'Jaqueline, Neia, Michele', male: 'Rafael, Felipe' },
+            { id: 'G4', color: 'purple', female: '-', male: 'Vinicius, Guilherme' },
+            { id: 'Kids', color: 'teal', type: 'mixed', list: 'Davi (5), Enzo (6), Ágatha (3), Anthony (1), Isaac (1), Pedro H. (5), Manuella (6), Maria V. (7), Maria C. (4)', title: 'Kids (até 7 anos)' },
+            { id: 'Teens', color: 'rose', type: 'mixed', list: 'Miguel (9), Adrian (10), Laura (8), Lázaro (11), Pedro Gabriel (13), Thiago Henry (17)', title: 'Infantil/Teens (8 a 17 anos)' }
+        ];
+
+        var recipesData = [
+            {
+                date: '30/dez - Segunda',
+                meals: [
+                    { t: 'Café: Pão com Ovos', tag: 'tag-café', ing: '65 Pães franceses, 2kg Manteiga, 100 Ovos, 10L Leite, 2kg Café, 3kg Açúcar', 
+                      st: ['Prepare café em garrafas térmicas.', 'Aqueça o leite sem ferver.', 'Corte os pães.', 'Faça ovos mexidos em levas de 20-30 para não esfriar.'] },
+                    { t: 'Almoço: PF Frango', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Filé de Frango, 10 Alfaces, 8kg Tomate, 2L Óleo, 3kg Cebola', 
+                      st: ['Arroz: refogue bem.', 'Frango: chapa quente aos poucos.', 'Salada: higienizar.'] },
+                    { t: 'Jantar: Hot Dog', tag: 'tag-jantar', ing: '65 Pães Hot Dog, 10kg Salsicha, 6kg Molho, 8kg Batata (Purê), 2L Leite, 2kg Batata Palha', 
+                      st: ['Purê: cozinhe batatas, amasse com leite/manteiga.', 'Salsicha: ferva antes, depois molho.', 'Servir: estação de montagem.'] }
+                ]
+            },
+            {
+                date: '31/dez - Terça',
+                meals: [
+                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, 2kg Queijo, 1kg Manteiga, 100 Ovos, 10L Leite', 
+                      st: ['Hidrate flocão (500ml/pct). Cozinhe vapor. Sirva com queijo/ovo.'] },
+                    { t: 'Almoço: Leve', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Frango, Salada', st: 'Repetir preparo básico. Manter leve para a ceia.' },
+                    { t: 'Jantar: CHURRASCO VIRADA', tag: 'tag-jantar', ing: '6kg Picanha, 8kg Contra, 10kg Linguiça, 5kg Tulipa, 5kg Coxinha, 30 Pães Alho, 5kg Farofa, Vinagrete', 
+                      st: ['Acenda carvão cedo.', 'Comece por linguiça/frango/pão alho.', 'Salgue carnes nobres com sal grosso na hora.'] }
+                ]
+            },
+            {
+                date: '01/jan - Quarta',
+                meals: [
+                    { t: 'Café: Ressaca', tag: 'tag-café', ing: '65 Pães, Frios, Ovos, Café forte', st: 'Praticidade.' },
+                    { t: 'Almoço: Churrasco Cont.', tag: 'tag-almoço', ing: '8kg Maminha, Carnes restantes, Arroz, Farofa', st: 'Reacenda churrasqueira. Asse Maminha. Arroz fresco.' },
+                    { t: 'Jantar: Pastel', tag: 'tag-jantar', ing: '10 rolos Massa, 5kg Carne Moída, 3kg Queijo, 3L Óleo', st: 'Refogue carne bem seca. Rale queijo. Monte pastéis. Frite em imersão quente.' }
+                ]
+            },
+            {
+                date: '02/jan - Quinta',
+                meals: [
+                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, Queijo, Ovos', st: 'Cuscuz tradicional.' },
+                    { t: 'Almoço: Strogonoff', tag: 'tag-almoço', ing: '10kg Carne (cubos), 10cx Creme Leite, 4kg Molho, 1kg Champignon, 10kg Arroz, 3kg Batata Palha', 
+                      st: ['Sele carne aos poucos.', 'Junte molho/ketchup/mostarda.', 'Desligue e ponha creme leite.'] },
+                    { t: 'Jantar: Macarrão', tag: 'tag-jantar', ing: '8kg Macarrão, 5kg Carne Moída, Molho Tomate', st: 'Molho bolonhesa rico. Macarrão al dente.' }
+                ]
+            },
+             {
+                date: '03/jan - Sexta',
+                meals: [
+                     { t: 'Café: Variado', tag: 'tag-café', ing: 'Pães, Ovos, Frios', st: 'Básico.' },
+                     { t: 'Almoço: Leve', tag: 'tag-almoço', ing: 'Arroz, Frango, Salada', st: 'Básico.' },
+                     { t: 'Jantar: Hamburgada', tag: 'tag-jantar', ing: '7kg Carne Moída, 50 Pães, Queijo, Salada, Condimentos', st: ['Molde hambúrgueres de 140g.', 'Grelhe na chapa bem quente.', 'Monte com pão, queijo e salada.'] }
+                ]
+            },
+            {
+                date: '04/jan - Sábado',
+                meals: [
+                     { t: 'Café: Despedida', tag: 'tag-café', ing: 'Tudo que sobrou (Cuscuz/Pão)', st: 'Limpa estoque.' },
+                     { t: 'Almoço: Último', tag: 'tag-almoço', ing: 'Limpa geladeira', st: 'Criatividade com as sobras.' }
+                ]
+            }
+        ];
+
+        var defaultShoppingList = [
+            // Descartáveis
+            { id: '1', category: 'Descartáveis', name: 'Copo desc. 200ml', unit: 'pct', qty: 15, unitPrice: 14.40, totalEst: 216.00, realPrice: 0, bought: false },
+            { id: '2', category: 'Descartáveis', name: 'Prato desc.', unit: 'pct', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
+            { id: '3', category: 'Descartáveis', name: 'Talheres desc.', unit: 'pct', qty: 10, unitPrice: 24.00, totalEst: 240.00, realPrice: 0, bought: false },
+            { id: '4', category: 'Descartáveis', name: 'Guardanapo', unit: 'pct', qty: 8, unitPrice: 9.60, totalEst: 76.80, realPrice: 0, bought: false },
+            { id: '5', category: 'Descartáveis', name: 'Papel toalha', unit: 'rolo', qty: 14, unitPrice: 7.80, totalEst: 109.20, realPrice: 0, bought: false },
+            { id: '6', category: 'Descartáveis', name: 'Bandeja alum. G', unit: 'un', qty: 25, unitPrice: 4.20, totalEst: 105.00, realPrice: 0, bought: false },
+            { id: '7', category: 'Descartáveis', name: 'Bandeja alum. M', unit: 'un', qty: 30, unitPrice: 3.36, totalEst: 100.80, realPrice: 0, bought: false },
+            { id: '8', category: 'Descartáveis', name: 'Papel alumínio', unit: 'rolo', qty: 3, unitPrice: 14.40, totalEst: 43.20, realPrice: 0, bought: false },
+            { id: '9', category: 'Descartáveis', name: 'Filme plástico', unit: 'rolo', qty: 3, unitPrice: 9.60, totalEst: 28.80, realPrice: 0, bought: false },
+            // Mercado
+            { id: '10', category: 'Mercado', name: 'Arroz', unit: 'kg', qty: 50, unitPrice: 8.64, totalEst: 432.00, realPrice: 0, bought: false },
+            { id: '11', category: 'Mercado', name: 'Macarrão', unit: 'kg', qty: 16, unitPrice: 10.68, totalEst: 170.88, realPrice: 0, bought: false },
+            { id: '12', category: 'Mercado', name: 'Molho Tomate', unit: 'kg', qty: 14, unitPrice: 14.40, totalEst: 201.60, realPrice: 0, bought: false },
+            // (Removido a pedido do organizador: Óleo será provido no local / não precisa comprar)
+            { id: '14', category: 'Mercado', name: 'Sal', unit: 'kg', qty: 4, unitPrice: 5.40, totalEst: 21.60, realPrice: 0, bought: false },
+            { id: '15', category: 'Mercado', name: 'Açúcar', unit: 'kg', qty: 12, unitPrice: 5.76, totalEst: 69.12, realPrice: 0, bought: false },
+            { id: '16', category: 'Mercado', name: 'Café pó', unit: 'kg', qty: 10, unitPrice: 36.00, totalEst: 360.00, realPrice: 0, bought: false },
+            { id: '17', category: 'Mercado', name: 'Leite', unit: 'L', qty: 60, unitPrice: 5.76, totalEst: 345.60, realPrice: 0, bought: false },
+            { id: '18', category: 'Mercado', name: 'Flocão Milho', unit: 'kg', qty: 16.5, unitPrice: 11.88, totalEst: 196.02, realPrice: 0, bought: false },
+            { id: '19', category: 'Mercado', name: 'Batata palha', unit: 'kg', qty: 6, unitPrice: 37.20, totalEst: 223.20, realPrice: 0, bought: false },
+            { id: '20', category: 'Mercado', name: 'Farofa', unit: 'kg', qty: 9, unitPrice: 22.80, totalEst: 205.20, realPrice: 0, bought: false },
+            { id: '21', category: 'Mercado', name: 'Milho verde', unit: 'lata', qty: 24, unitPrice: 7.20, totalEst: 172.80, realPrice: 0, bought: false },
+            { id: '22', category: 'Mercado', name: 'Ervilha', unit: 'lata', qty: 24, unitPrice: 7.80, totalEst: 187.20, realPrice: 0, bought: false },
+            { id: '23', category: 'Mercado', name: 'Maionese', unit: 'kg', qty: 8, unitPrice: 26.40, totalEst: 211.20, realPrice: 0, bought: false },
+            { id: '24', category: 'Mercado', name: 'Ketchup', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
+            { id: '25', category: 'Mercado', name: 'Mostarda', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
+            { id: '26', category: 'Mercado', name: 'Suco', unit: 'L', qty: 40, unitPrice: 7.80, totalEst: 312.00, realPrice: 0, bought: false },
+            // Açougue
+            { id: '27', category: 'Açougue', name: 'Filé Frango', unit: 'kg', qty: 40, unitPrice: 32.40, totalEst: 1296.00, realPrice: 0, bought: false },
+            { id: '28', category: 'Açougue', name: 'Patinho Moído', unit: 'kg', qty: 21, unitPrice: 53.99, totalEst: 1133.75, realPrice: 0, bought: false },
+            { id: '29', category: 'Açougue', name: 'Maminha', unit: 'kg', qty: 11, unitPrice: 62.40, totalEst: 686.40, realPrice: 0, bought: false },
+            { id: '30', category: 'Açougue', name: 'Contra-filé', unit: 'kg', qty: 6, unitPrice: 65.99, totalEst: 395.93, realPrice: 0, bought: false },
+            { id: '31', category: 'Açougue', name: 'Picanha', unit: 'kg', qty: 4, unitPrice: 83.99, totalEst: 335.95, realPrice: 0, bought: false },
+            { id: '32', category: 'Açougue', name: 'Linguiça', unit: 'kg', qty: 18, unitPrice: 32.39, totalEst: 582.98, realPrice: 0, bought: false },
+            { id: '33', category: 'Açougue', name: 'Tulipa Frango', unit: 'kg', qty: 4, unitPrice: 9.59, totalEst: 38.35, realPrice: 0, bought: false },
+            { id: '34', category: 'Açougue', name: 'Coxinha Asa', unit: 'kg', qty: 4, unitPrice: 21.59, totalEst: 86.35, realPrice: 0, bought: false },
+            { id: '35', category: 'Açougue', name: 'Salsicha', unit: 'kg', qty: 6, unitPrice: 21.60, totalEst: 129.60, realPrice: 0, bought: false },
+            { id: '36', category: 'Açougue', name: 'Hambúrguer', unit: 'kg', qty: 7, unitPrice: 53.99, totalEst: 377.92, realPrice: 0, bought: false },
+            // Hortifruti
+            { id: '37', category: 'Hortifruti', name: 'Alface', unit: 'pé', qty: 40, unitPrice: 5.40, totalEst: 216.00, realPrice: 0, bought: false },
+            { id: '38', category: 'Hortifruti', name: 'Tomate', unit: 'kg', qty: 36, unitPrice: 10.68, totalEst: 384.48, realPrice: 0, bought: false },
+            { id: '39', category: 'Hortifruti', name: 'Cebola', unit: 'kg', qty: 20, unitPrice: 9.00, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '40', category: 'Hortifruti', name: 'Batata', unit: 'kg', qty: 20, unitPrice: 8.28, totalEst: 165.60, realPrice: 0, bought: false },
+            { id: '41', category: 'Hortifruti', name: 'Cenoura', unit: 'kg', qty: 12, unitPrice: 7.80, totalEst: 93.60, realPrice: 0, bought: false },
+            { id: '42', category: 'Hortifruti', name: 'Limão', unit: 'kg', qty: 12, unitPrice: 9.00, totalEst: 108.00, realPrice: 0, bought: false },
+            { id: '43', category: 'Hortifruti', name: 'Pimentão', unit: 'kg', qty: 6, unitPrice: 11.40, totalEst: 68.40, realPrice: 0, bought: false },
+            // Padaria
+            { id: '44', category: 'Padaria', name: 'Pão francês', unit: 'un', qty: 260, unitPrice: 1.20, totalEst: 312.00, realPrice: 0, bought: false },
+            { id: '45', category: 'Padaria', name: 'Pão de hot dog', unit: 'un', qty: 50, unitPrice: 1.44, totalEst: 72.00, realPrice: 0, bought: false },
+            { id: '46', category: 'Padaria', name: 'Pão de hambúrguer', unit: 'un', qty: 50, unitPrice: 1.92, totalEst: 96.00, realPrice: 0, bought: false },
+            { id: '47', category: 'Padaria', name: 'Pão de alho', unit: 'un', qty: 60, unitPrice: 3.36, totalEst: 201.60, realPrice: 0, bought: false },
+            { id: '48', category: 'Padaria', name: 'Ingr. Pão Caseiro', unit: 'kit', qty: 4, unitPrice: 30.00, totalEst: 120.00, realPrice: 0, bought: false },
+            // Bebidas
+            { id: '49', category: 'Bebidas', name: 'Água 20L', unit: 'un', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
+            // --- Itens Adicionados / Recuperados ---
+            { id: '50', category: 'Mercado', name: 'Ovos (Cartela 30un)', unit: 'un', qty: 17, unitPrice: 20.00, totalEst: 340.00, realPrice: 0, bought: false }, // ~500 ovos
+            { id: '51', category: 'Mercado', name: 'Manteiga/Margarina (500g)', unit: 'un', qty: 20, unitPrice: 20.00, totalEst: 400.00, realPrice: 0, bought: false }, // 10kg
+            { id: '52', category: 'Mercado', name: 'Carvão (Saco)', unit: 'un', qty: 5, unitPrice: 35.00, totalEst: 175.00, realPrice: 0, bought: false },
+            { id: '53', category: 'Frios', name: 'Presunto', unit: 'kg', qty: 4, unitPrice: 45.00, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '54', category: 'Frios', name: 'Mussarela', unit: 'kg', qty: 4, unitPrice: 55.00, totalEst: 220.00, realPrice: 0, bought: false },
+            // (Removido a pedido do organizador: Alho será provido no local / não precisa comprar)
+        ];
+
+        var verses = {
+            home: { t: "Porém eu e a minha casa serviremos ao Senhor.", r: "Josué 24:15", c: "--yellow" },
+            menu: { t: "Quer comais quer bebais... fazei tudo para glória de Deus.", r: "1 Coríntios 10:31", c: "--yellow" },
+            cleaning: { t: "Tudo o que fizerem, façam de todo o coração...", r: "Colossenses 3:23", c: "--blue" },
+            shopping: { t: "O meu Deus suprirá todas as necessidades...", r: "Filipenses 4:19", c: "--green" },
+            recipes: { t: "Dá-nos hoje o nosso pão de cada dia.", r: "Mateus 6:11", c: "--rose" },
+            members: { t: "Oh! quão bom e quão suave é que os irmãos vivam em união.", r: "Salmos 133:1", c: "--purple" },
+            contacts: { t: "O Senhor guardará a tua saída e a tua entrada.", r: "Salmos 121:8", c: "--slate" },
+            sos: { t: "Deus é o nosso refúgio e fortaleza.", r: "Salmos 46:1", c: "--red" }
+        };
+
+        // --- Logic ---
+        var app = {
+            state: { shoppingList: [] },
+
+            // Normaliza / migra a lista salva (para não “perder” dados antigos ao atualizar o site)
+            sanitizeShoppingList: function(list) {
+                if(!Array.isArray(list)) return defaultShoppingList.map(function(i){ return { ...i, bought:false, realUnit:0 }; });
+
+                // 1) Remover itens que o organizador pediu para NÃO incluir
+                var blocked = ['óleo', 'óleo de soja', 'alho'];
+                var cleaned = list.filter(function(it){
+                    var n = String(it && it.name ? it.name : '').toLowerCase().trim();
+                    // remove somente os itens explicitamente bloqueados
+                    return blocked.indexOf(n) === -1;
+                });
+
+                // 2) Garantir que “Suco natural” exista (caso alguém tenha uma versão antiga sem suco)
+                var hasJuice = cleaned.some(function(it){
+                    var n = String(it && it.name ? it.name : '').toLowerCase();
+                    return n.includes('suco');
+                });
+                if(!hasJuice) {
+                    cleaned.push({ id: '26', category: 'Mercado', name: 'Suco natural', unit: 'L', qty: 40, unitPrice: 7.80, totalEst: 312.00, realPrice: 0, bought: false, realUnit: 0 });
+                }
+
+                return cleaned;
+            },
+            
+            init: function() {
+                var saved = localStorage.getItem('family_final_v10');
+                if(saved) { this.state.shoppingList = this.sanitizeShoppingList(JSON.parse(saved)); }
+                else { this.state.shoppingList = this.sanitizeShoppingList(null); }
+
+                // Persistir após migração, para garantir consistência entre dispositivos
+                this.save();
+                this.navigate('home');
+            },
+
+            save: function() {
+                localStorage.setItem('family_final_v10', JSON.stringify(this.state.shoppingList));
+                this.updateTotals();
+            },
+            
+            resetData: function() {
+                if(confirm('Resetar lista?')) {
+                    localStorage.removeItem('family_final_v10');
+                    location.reload();
+                }
+            },
+            
+            exportData: function() {
+                var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.state.shoppingList));
+                var node = document.createElement('a');
+                node.setAttribute("href", dataStr);
+                node.setAttribute("download", "compras.json");
+                document.body.appendChild(node);
+                node.click();
+                node.remove();
+            },
+            
+            toggleCard: function(id) {
+                var body = document.getElementById(id);
+                var header = body.previousElementSibling;
+                var chevron = header.querySelector('.chevron');
+                if (body.style.display === 'none') {
+                    body.style.display = 'block';
+                    if(chevron) chevron.style.transform = 'rotate(0deg)';
+                } else {
+                    body.style.display = 'none';
+                    if(chevron) chevron.style.transform = 'rotate(-90deg)';
+                }
+            },
+
+            toggleCategory: function(catId) {
+                var content = document.getElementById(catId);
+                var header = content.previousElementSibling;
+                var chevron = header.querySelector('.chevron');
+                if (content.classList.contains('collapsed')) {
+                    content.classList.remove('collapsed');
+                    header.classList.remove('collapsed');
+                    chevron.style.transform = 'rotate(0deg)';
+                } else {
+                    content.classList.add('collapsed');
+                    header.classList.add('collapsed');
+                    chevron.style.transform = 'rotate(-90deg)';
+                }
+            },
+
+            setFilter: function(btn, type) {
+                document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                this.filterType = type;
+                this.renderShoppingListItems();
+            },
+
+            filterShopping: function() {
+                this.renderShoppingListItems();
+            },
+
+            updateTotals: function() {
+                var real = 0, est = 0;
+                this.state.shoppingList.forEach(function(i) {
+                    est += i.totalEst;
+                    if(i.bought) real += (i.realUnit * i.qty);
+                });
+                if(document.getElementById('total-real')) document.getElementById('total-real').innerText = real.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+                if(document.getElementById('total-est')) document.getElementById('total-est').innerText = "Orç: " + est.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+            },
+
+            renderShoppingListItems: function() {
+                var term = document.getElementById('shop-search') ? document.getElementById('shop-search').value.toLowerCase() : '';
+                var container = document.getElementById('shopping-list-container');
+                container.innerHTML = '';
+                
+                var groups = {};
+                var self = this;
+                
+                this.state.shoppingList.forEach(function(item, idx) {
+                    if (self.filterType === 'pending' && item.bought) return;
+                    if (self.filterType === 'bought' && !item.bought) return;
+                    if (term && !item.name.toLowerCase().includes(term)) return;
+                    
+                    if(!groups[item.category]) groups[item.category] = [];
+                    groups[item.category].push({item: item, idx: idx});
+                });
+
+                for (var cat in groups) {
+                     var items = groups[cat];
+                     var catId = 'cat-' + cat.replace(/\s+/g, '-').toLowerCase();
+                     var html = `<div class="shopping-category-header" onclick="app.toggleCategory('${catId}')"><span>${cat}</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+                     <div id="${catId}" class="shopping-table-wrapper"><table class="shopping-table"><thead><tr><th class="col-flag">Ok</th><th class="col-item">Item</th><th class="col-unit">Unid.</th><th class="col-qty">Qtd.</th><th class="col-price-est">Unit (Est)</th><th class="col-total-est">Total (Est)</th><th class="col-price-real">Pago (R$)</th></tr></thead><tbody>`;
+                     
+                     items.forEach(function(obj) {
+                         var i = obj.item;
+                         var idx = obj.idx;
+                         html += `<tr class="${i.bought ? 'bought' : ''}">
+                            <td class="col-flag"><input type="checkbox" class="checkbox" ${i.bought ? 'checked' : ''} onchange="app.state.shoppingList[${idx}].bought=this.checked; app.save(); app.renderShoppingListItems();"></td>
+                            <td class="col-item"><span class="item-name">${i.name}</span></td>
+                            <td class="col-unit">${i.unit}</td>
+                            <td class="col-qty">${i.qty}</td>
+                            <td class="col-price-est">R$ ${i.unitPrice.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                            <td class="col-total-est">R$ ${i.totalEst.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                            <td class="col-price-real">
+                                <input type="number" 
+                                    class="price-input-real" 
+                                    placeholder="0,00" 
+                                    value="${i.realUnit > 0 ? i.realUnit : ''}" 
+                                    onchange="app.state.shoppingList[${idx}].realUnit=parseFloat(this.value)||0; app.save(); app.updateTotals();"
+                                    onclick="this.select()"
+                                >
+                            </td>
+                         </tr>`;
+                     });
+                     html += `</tbody></table></div>`;
+                     container.innerHTML += html;
+                }
+                this.updateTotals();
+            },
+            
+            navigate: function(tab) {
+                document.querySelectorAll('.tab-btn').forEach(function(btn) {
+                    btn.classList.remove('active');
+                    btn.classList.remove('active-home', 'active-menu', 'active-cleaning', 'active-shopping', 'active-recipes', 'active-members', 'active-contacts', 'active-sos');
+                    
+                    if(btn.id === 'btn-' + tab) {
+                        btn.classList.add('active');
+                        var colorClass = 'active-menu';
+                        if(tab === 'home') colorClass = 'active-home';
+                        if(tab === 'cleaning') colorClass = 'active-cleaning';
+                        if(tab === 'shopping') colorClass = 'active-shopping';
+                        if(tab === 'recipes') colorClass = 'active-recipes';
+                        if(tab === 'members') colorClass = 'active-members';
+                        if(tab === 'contacts') colorClass = 'active-contacts';
+                        if(tab === 'sos') colorClass = 'active-sos';
+                        btn.classList.add(colorClass);
+                    } else {
+                        btn.className = 'tab-btn inactive';
+                    }
+                });
+
+                if(floatingTotal) floatingTotal.style.display = (tab === 'shopping') ? 'flex' : 'none';
+                if(footerVerseContainer) footerVerseContainer.style.display = (tab === 'home') ? 'none' : 'block';
+
+                if (tab === 'home') this.renderHome();
+                else if (tab === 'menu') this.renderMenu();
+                else if (tab === 'cleaning') this.renderCleaning();
+                else if (tab === 'shopping') this.renderShopping();
+                else if (tab === 'recipes') this.renderRecipes();
+                else if (tab === 'members') this.renderMembers();
+                else if (tab === 'contacts') this.renderContacts();
+                else if (tab === 'sos') this.renderSOS();
+
+                var v = verses[tab];
+                if(v && verseText && verseRef && verseCard) {
+                    verseText.innerText = `"${v.t}"`;
+                    verseRef.innerText = v.r;
+                    var color = v.c; 
+                    if(verseCard) verseCard.style.borderColor = `var(${color}-200)`;
+                    if(document.getElementById('verse-icon-bg')) {
+                        var ic = document.getElementById('verse-icon-bg');
+                        ic.style.backgroundColor = `var(${color}-100)`;
+                        ic.style.color = `var(${color}-600)`;
+                    }
+                    if(verseRef) verseRef.style.color = `var(${color}-600)`;
+                }
+            },
+
+            renderHome: function() {
+                contentArea.innerHTML = `
+                    <div class="welcome-card"><div class="welcome-title">Bem-vindos! 👋</div><div class="welcome-text">Nosso cantinho digital para organizar o fim de ano.</div></div>
+                    <div class="verse-highlight"><div class="verse-highlight-text">"Porém eu e a minha casa serviremos ao Senhor."</div><div class="verse-highlight-ref">Josué 24:15</div></div>
+                    <div class="nav-grid">
+                        <div class="nav-card" onclick="app.navigate('menu')"><div class="nav-card-icon" style="background:var(--yellow-100); color:var(--yellow-600);">${Icons.Utensils}</div><div class="nav-card-title">Cardápio</div></div>
+                        <div class="nav-card" onclick="app.navigate('shopping')"><div class="nav-card-icon" style="background:var(--green-100); color:var(--green-600);">${Icons.Coffee}</div><div class="nav-card-title">Lista</div></div>
+                        <div class="nav-card" onclick="app.navigate('cleaning')"><div class="nav-card-icon" style="background:var(--blue-100); color:var(--blue-600);">${Icons.Droplets}</div><div class="nav-card-title">Escala</div></div>
+                        <div class="nav-card" onclick="app.navigate('contacts')"><div class="nav-card-icon" style="background:var(--slate-100); color:var(--slate-600);">${Icons.Phone}</div><div class="nav-card-title">Contatos</div></div>
+                        <div class="nav-card" onclick="app.navigate('members')"><div class="nav-card-icon" style="background:var(--purple-100); color:var(--purple-600);">${Icons.Users}</div><div class="nav-card-title">Integrantes</div></div>
+                        <div class="nav-card" onclick="app.navigate('sos')"><div class="nav-card-icon" style="background:var(--red-50); color:var(--red-600);">🚑</div><div class="nav-card-title">SOS</div></div>
+                    </div>`;
+            },
+
+            renderMenu: function() {
+                var html = '<div class="grid">';
+                menuData.forEach((d, i) => {
+                    var uid = 'menu-'+i;
+                    if(d.empty) {
+                        html += `<div class="card"><div class="card-header bg-yellow-light"><span class="font-bold uppercase">${d.date}</span></div><div class="card-body text-center text-slate-400">${d.note}</div></div>`;
+                    } else {
+                        html += `<div class="card" style="margin-bottom:0;">
+                            <div class="card-header bg-yellow-light" onclick="app.toggleCard('${uid}')">
+                                <span class="font-bold text-slate-700">${d.day}</span>
+                                <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                            <div id="${uid}" class="card-body" style="display:none"> <!-- Starts Closed -->
+                                <div class="item-row"><div class="icon-box bg-orange-100">☕</div><div><div class="item-label" style="color:chocolate">Café</div><div class="font-bold">${d.b.t}</div><div class="text-sm">${d.b.i}</div></div></div>
+                                <div class="item-row"><div class="icon-box bg-yellow-100">☀️</div><div><div class="item-label" style="color:goldenrod">Almoço</div><div class="font-bold">${d.l.t}</div><div class="text-sm">${d.l.i}</div></div></div>
+                                ${d.d ? `<div class="item-row"><div class="icon-box bg-indigo-100">🌙</div><div><div class="item-label" style="color:darkslateblue">Jantar</div><div class="font-bold">${d.d.t}</div><div class="text-sm">${d.d.i}</div></div></div>` : ''}
+                            </div>
+                        </div>`;
+                    }
+                });
+                contentArea.innerHTML = html + '</div>';
+            },
+
+            renderCleaning: function() {
+                var html = `<div class="awareness-card"><div class="awareness-icon">${Icons.HeartHandshake}</div><div><div class="text-sm font-bold text-teal-700 uppercase mb-1">Conscientização</div><div class="text-sm text-teal-600">Banheiros e áreas comuns são responsabilidade de TODOS!</div></div></div>`;
+                html += '<div class="grid">';
+                cleaningData.forEach((d, i) => {
+                     var uid = 'clean-'+i;
+                     var cafeNames = membersMap[d.cafe] || d.cafe;
+                     var almocoMNames = membersMap[d.almocoM] || d.almocoM;
+                     var almocoLNames = membersMap[d.almocoL] || d.almocoL;
+                     var jantarMNames = d.jantarM !== '-' ? (membersMap[d.jantarM] || d.jantarM) : '-';
+                     var jantarLNames = d.jantarL !== '-' ? (membersMap[d.jantarL] || d.jantarL) : '-';
+                     
+                     html += `<div class="card">
+                        <div class="card-header bg-blue-light" onclick="app.toggleCard('${uid}')">
+                            <span class="font-bold text-slate-700">${d.date}</span>
+                            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                        <div id="${uid}" class="card-body" style="display:none"> <!-- Starts Closed -->
+                            <div class="item-label text-slate-400">Café da Manhã</div>
+                            <div class="font-bold">${d.cafe} - ${cafeNames}</div>
+                            <div style="margin-top:8px;" class="item-label text-slate-400">Almoço</div>
+                            <div class="text-sm">Preparo: <strong>${d.almocoM}</strong> (${almocoMNames})</div>
+                            <div class="text-sm">Louça: <strong>${d.almocoL}</strong> (${almocoLNames})</div>
+                            <div style="margin-top:8px;" class="item-label text-slate-400">Jantar</div>
+                            <div class="text-sm">Preparo: <strong>${d.jantarM}</strong> ${jantarMNames !== '-' ? `(${jantarMNames})` : ''}</div>
+                            <div class="text-sm">Louça: <strong>${d.jantarL}</strong> ${jantarLNames !== '-' ? `(${jantarLNames})` : ''}</div>
+                        </div>
+                     </div>`;
+                });
+                contentArea.innerHTML = html + '</div>';
+            },
+
+            renderShopping: function() {
+                var html = `<div class="shopping-toolbar"><input type="text" id="shop-search" class="search-bar" placeholder="Buscar..." onkeyup="app.filterShopping()"><div class="filters"><button class="filter-btn active" onclick="app.setFilter(this, 'all')">Todos</button><button class="filter-btn" onclick="app.setFilter(this, 'pending')">Pendentes</button><button class="filter-btn" onclick="app.setFilter(this, 'bought')">Comprados</button></div><div class="tools-row"><button class="action-btn" onclick="app.resetData()">Resetar</button><button class="action-btn" onclick="app.exportData()">Exportar</button></div></div><div id="shopping-list-container"></div>`;
+                contentArea.innerHTML = html;
+                this.renderShoppingListItems();
+            },
+
+            renderRecipes: function() {
+                var html = '';
+                recipesData.forEach((d, i) => {
+                    var uid = 'recipe-'+i;
+                    html += `<div class="card" style="margin-bottom:12px;">
+                        <div class="card-header bg-rose-light" onclick="app.toggleCard('${uid}')">
+                            <span class="font-bold text-slate-700">${d.date}</span>
+                            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                        <div id="${uid}" class="card-body">
+                            ${d.meals.map(m => `
+                                <div style="margin-bottom:16px; border-bottom:1px dashed #eee; padding-bottom:16px;">
+                                    <div class="item-label" style="color:var(--rose-600)">${m.t}</div>
+                                    
+                                    <div class="recipe-section">
+                                        <div class="recipe-section-title">🥣 Ingredientes</div>
+                                        <div style="font-size:0.9rem; color:var(--slate-600);">${m.ing}</div>
+                                    </div>
+                                    
+                                    <div class="recipe-section">
+                                        <div class="recipe-section-title">🔥 Preparo</div>
+                                        <ol class="steps-list">
+                                            ${Array.isArray(m.st) ? m.st.map(s => `<li>${s}</li>`).join('') : `<li>${m.st}</li>`}
+                                        </ol>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>`;
+                });
+                contentArea.innerHTML = html;
+            },
+
+            renderMembers: function() {
+                var html = '<div class="grid">';
+                membersGroups.forEach((g, i) => {
+                    var uid = 'mem-'+i;
+                    var st = g.type === 'mixed' ? 'background: linear-gradient(to right, #ccfbf1, #99f6e4); border-color: #5eead4;' : 'background: linear-gradient(to right, #e0e7ff, #c7d2fe);';
+                    html += `<div class="card"><div class="card-header" style="${st}" onclick="app.toggleCard('${uid}')"><span class="font-bold text-slate-700">${g.title || g.id}</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div id="${uid}" class="card-body" style="display:none">${g.list ? `<div class="text-center font-bold text-slate-600">${g.list}</div>` : `<div><div class="item-label" style="color:var(--rose-600)">Elas</div><div>${g.female}</div></div><div style="height:1px; background:#eee"></div><div><div class="item-label" style="color:var(--blue-600)">Eles</div><div>${g.male}</div></div>`}</div></div>`;
+                });
+                contentArea.innerHTML = html + '</div>';
+            },
+
+            renderContacts: function() {
+                contentArea.innerHTML = `<div class="grid"><div class="card special"><div class="card-header bg-yellow-light" onclick="app.toggleCard('cont-1')"><span class="font-bold text-slate-700">📍 Sítio Casal Vida</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div id="cont-1" class="card-body"><div><strong>Plus Code:</strong> 7PXG+GV</div><a href="https://maps.app.goo.gl/JwUkEGykifmq9f3m9" target="_blank" class="contact-link">Abrir no Maps</a></div></div><div class="card"><div class="card-header" onclick="app.toggleCard('cont-2')"><span class="font-bold text-slate-700">🥐 Padarias</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div id="cont-2" class="card-body collapsed">
+                            <div class="contact-item"><div class="font-bold">Padaria Princesa de Ibiúna</div><div class="text-sm">R. Quinze de Novembro, 26 – Centro</div><div class="text-sm">📞 (15) 3241-1069</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/Padaria+Princesa+de+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
+                            <div class="contact-item"><div class="font-bold">Padaria Machado</div><div class="text-sm">Av. São Sebastião, 438 – Centro</div><div class="text-sm">📞 (15) 3241-1428</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/Padaria+Machado+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <div class="card-header" onclick="app.toggleCard('cont-3')"><span class="font-bold text-slate-700">🛒 Supermercados</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        <div id="cont-3" class="card-body collapsed">
+                            <div class="contact-item"><div class="font-bold">São Roque Supermercados – Centro</div><div class="text-sm">R. Pinduca Soares, 350</div><div class="text-sm">📞 (15) 3241-1205</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/São+Roque+Supermercados+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
+                             <div class="contact-item"><div class="font-bold">Supermercado Ibiúna</div><div class="text-sm">Centro – Ibiúna/SP</div><div class="text-sm">📞 (15) 3248-9880</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/Supermercado+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
+                        </div>
+                    </div>
+                    <div class="card" style="border:2px solid #fca5a5">
+                        <div class="card-header bg-red-light" onclick="app.toggleCard('cont-4')"><span class="font-bold text-red-600">🏥 Hospital Municipal 24h</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+                        <div id="cont-4" class="card-body">
+                             <div>Av. Gabriel Monteiro da Silva, 888 – Jd Áurea</div>
+                             <div class="font-bold mt-2">Tel: (15) 3248-9520</div>
+                             <div class="text-xs mt-1">🚗 ~15,5 km | 19 min</div>
+                             <a href="https://www.google.com/maps/search/Hospital+Municipal+de+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a>
+                        </div>
+                    </div>
+                </div>`;
+            },
+            
+            renderSOS: function() {
+                contentArea.innerHTML = `<div class="card" style="border:2px solid var(--red-600)"><div class="card-header bg-red-light"><span class="font-bold text-red-600">🚑 EMERGÊNCIA</span></div><div class="card-body"><div class="sos-alert text-center mb-4">📍 Sítio Casal Vida – Ibiúna/SP</div><div class="sos-section"><div class="sos-title">Telefones</div><ul class="sos-list" style="list-style:none; padding:0;"><li><strong>SAMU:</strong> 192</li><li><strong>Bombeiros:</strong> 193</li><li><strong>Polícia:</strong> 190</li></ul></div><div class="sos-section" style="margin-top:20px;"><div class="sos-title" style="font-weight:800; text-transform:uppercase; margin-bottom:8px;">Animais Peçonhentos</div><div class="sos-alert">❌ NÃO corte ou sugue.<br>✅ Lave com água e vá ao hospital.</div></div>
+                <div style="margin-top:20px; font-size:0.9rem; color:var(--slate-600)"><strong>Engasgo:</strong> Incentive tosse. Se parar de respirar, faça a Manobra de Heimlich.<br><br><strong>Queimaduras:</strong> Água corrente fria por 10 min.<br><br><strong>Afogamento:</strong> Retire da água. Se não respirar, RCP imediata e ligue 192.<br><br><strong>Quedas:</strong> Não mova se houver dor intensa. Gelo por 20 min.</div>
+                </div></div>`;
+            }
+        };
+
+        // Init
+        app.init();
+    </script>
+
+
+<!-- Functions required for Lista de Compras (moved inside script for GitHub Pages) -->
+<script>
+function formatCurrencyBRL(value) {
+            const n = Number(value || 0);
+            return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function groupByCategory(list) {
+            const map = {};
+            list.forEach(item => {
+                const cat = item.category || 'Outros';
+                if (!map[cat]) map[cat] = [];
+                map[cat].push(item);
+            });
+            // Keep a consistent order (as items appear in list)
+            return Object.entries(map);
+        }
+
+        function renderShopping() {
+            contentArea.className = '';
+            const categories = groupByCategory(shoppingList);
+
+            let html = `
+                <div style="max-width: 1200px; margin: 0 auto;">
+                    <div class="awareness-card" style="margin-bottom: 16px;">
+                        <div class="awareness-icon" style="color: var(--green-600); border-color: var(--green-100);">🛒</div>
+                        <div>
+                            <div class="text-sm font-bold text-slate-700 uppercase mb-1">Lista de Compras</div>
+                            <div class="text-sm text-slate-600">
+                                Marque os itens comprados e, se quiser, preencha o <strong>Preço Real</strong> (valor total do item).
+                                O total “Gasto Real” considera apenas os itens marcados como comprados.
+                            </div>
+                        </div>
+                    </div>
+            `;
+
+            categories.forEach(([category, items], idx) => {
+                const catId = `cat-${idx}`;
+                // Totals per category
+                const estCat = items.reduce((acc, it) => acc + (Number(it.totalEst) || 0), 0);
+                const realCat = items.reduce((acc, it) => acc + (it.bought ? (Number(it.realPrice) || 0) : 0), 0);
+
+                html += `
+                    <div class="shopping-table-container">
+                        <div class="shopping-category-header" onclick="toggleCategory('${catId}')">
+                            <span>${category} <span class="text-xs" style="margin-left:8px; color: var(--slate-400); font-weight:700;">(Orçado: ${formatCurrencyBRL(estCat)} | Real: ${formatCurrencyBRL(realCat)})</span></span>
+                            <span class="chevron">${Icons.ChevronRight}</span>
+                        </div>
+                        <div id="${catId}" class="shopping-table-wrapper">
+                            <table class="shopping-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-flag">OK</th>
+                                        <th class="col-item">Item</th>
+                                        <th class="col-unit">Un.</th>
+                                        <th class="col-qty">Qtd</th>
+                                        <th class="col-price-est">Unit (R$)</th>
+                                        <th class="col-total-est">Total (R$)</th>
+                                        <th class="col-price-real">Preço Real</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+
+                items.forEach(item => {
+                    const trClass = item.bought ? 'bought' : '';
+                    html += `
+                        <tr class="${trClass}">
+                            <td class="col-flag">
+                                <input class="checkbox" type="checkbox" ${item.bought ? 'checked' : ''} onclick="toggleItem('${item.id}')"/>
+                            </td>
+                            <td class="col-item"><span class="item-name">${item.name}</span></td>
+                            <td class="col-unit">${item.unit}</td>
+                            <td class="col-qty">${item.qty}</td>
+                            <td class="col-price-est">${formatCurrencyBRL(item.unitPrice)}</td>
+                            <td class="col-total-est">${formatCurrencyBRL(item.totalEst)}</td>
+                            <td class="col-price-real">
+                                <input class="price-input-real" inputmode="decimal" placeholder="R$" value="${item.realPrice ? String(item.realPrice).replace('.', ',') : ''}"
+                                    oninput="updateRealPrice('${item.id}', this.value.replace(',', '.'))"/>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            contentArea.innerHTML = html;
+
+            // After rendering, ensure totals are updated
+            calculateTotal();
+        }
+
+
+>
+</script>
+</body>
+</html>
