@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Família Reunida • Fim de Ano 2025/2026</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f8fafc;color:#1e293b}
+header{background:#f59e0b;color:#fff;padding:24px;text-align:center}
+main{max-width:1100px;margin:auto;padding:16px}
+h2{margin-top:32px;border-bottom:2px solid #e5e7eb;padding-bottom:8px}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{border:1px solid #e5e7eb;padding:8px;text-align:left;font-size:14px}
+th{background:#f1f5f9}
+.section{margin-bottom:40px}
+footer{text-align:center;font-size:12px;color:#64748b;padding:24px}
+</style>
+</head>
+<body>
+<header>
+<h1>Família Reunida</h1>
+<p>Planejamento • Fim de Ano 2025/2026</p>
+</header>
+<main>
+
+<section class="section">
+<h2>📅 Cardápio Diário</h2>
+<table>
+<tr><th>Data</th><th>Café da Manhã</th><th>Almoço</th><th>Jantar</th></tr>
+<tr><td>30/12</td><td>Pão francês + ovos</td><td>Filé de frango, arroz, purê/salada</td><td>Hot dog</td></tr>
+<tr><td>31/12</td><td>Cuscuz, ovo, queijo</td><td>Filé de frango</td><td>Churrasco da virada</td></tr>
+<tr><td>01/01</td><td>Café frio</td><td>Churrasco</td><td>Pastel</td></tr>
+<tr><td>02/01</td><td>Cuscuz, pão</td><td>Strogonoff</td><td>Macarrão com carne moída</td></tr>
+<tr><td>03/01</td><td>Pães e ovos</td><td>Filé de frango</td><td>Hambúrguer</td></tr>
+<tr><td>04/01</td><td>Café despedida</td><td>Filé de frango</td><td>—</td></tr>
+</table>
+</section>
+
+<section class="section">
+<h2>🧹 Escala de Limpeza (Resumo)</h2>
+<table>
+<tr><th>Grupo</th><th>Atividades Totais</th></tr>
+<tr><td>G1</td><td>4</td></tr>
+<tr><td>G2</td><td>4</td></tr>
+<tr><td>G3</td><td>3</td></tr>
+<tr><td>G4</td><td>4</td></tr>
+</table>
+</section>
+
+<section class="section">
+<h2>🛒 Lista de Compras Completa</h2>
+<table>
+<tr><th>Departamento</th><th>Item</th><th>Quantidade</th></tr>
+<tr><td>Descartáveis</td><td>Copo descartável 200ml</td><td>15 pct</td></tr>
+<tr><td>Descartáveis</td><td>Prato descartável</td><td>10 pct</td></tr>
+<tr><td>Descartáveis</td><td>Talheres descartáveis</td><td>10 pct</td></tr>
+<tr><td>Mercado</td><td>Arroz</td><td>50 kg</td></tr>
+<tr><td>Mercado</td><td>Café em pó</td><td>10 kg</td></tr>
+<tr><td>Açougue</td><td>Filé de frango</td><td>40 kg</td></tr>
+<tr><td>Açougue</td><td>Patinho moído</td><td>21 kg</td></tr>
+<tr><td>Limpeza</td><td>Detergente, desinfetante, pano de chão</td><td>—</td></tr>
+</table>
+</section>
+
+</main>
+<footer>
+Família Reunida • Planejamento Central • 2025/2026
+</footer>
+
+<!-- CONTATOS ADICIONAIS - SUPERMERCADOS -->
+<script>
+(function(){
+  const contatosExtras = `
+  <div class="card">
+    <div class="card-header">
+      <span class="font-bold uppercase text-slate-700">🛒 Supermercados Adicionais</span>
+    </div>
+    <div class="card-body">
+      <div class="contact-item">
+        <div class="contact-title">Supermercado Ibiúna</div>
+        <span class="contact-info">Maior da região (atenção: costuma ficar extremamente lotado)</span>
+        <a href="https://maps.app.goo.gl/pBFgjAiLGb1DDdDr9" target="_blank" class="contact-link">Ver no Maps</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-title">Serrano Supermercados – Loja 13</div>
+        <span class="contact-info">Possui padaria (ideal para compra de pães)</span>
+        <a href="https://maps.app.goo.gl/N8D8v6EVV3k1kXTN7" target="_blank" class="contact-link">Ver no Maps</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-title">Serrano Supermercados – Loja 09</div>
+        <span class="contact-info">Alternativa com menor fluxo dependendo do horário</span>
+        <a href="https://maps.app.goo.gl/Px3cR5JQpj2rRf2z8" target="_blank" class="contact-link">Ver no Maps</a>
+      </div>
+    </div>
+  </div>`;
+
+  const originalRenderContacts = window.renderContacts;
+  window.renderContacts = function(){
+    originalRenderContacts();
+    const area = document.getElementById('content-area');
+    if(area) area.insertAdjacentHTML('beforeend', contatosExtras);
+  }
+})();
+</script>
+
+</body>
+</html>
