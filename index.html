@@ -311,7 +311,7 @@
         var menuData = [
           { date: '29/dez', day: 'Domingo', empty: true, note: 'Chegada / Organização (Sem refeição oficial)' },
           { date: '30/dez', day: 'Terça', b: {t:'Café Frio', i:'Pão francês, presunto e queijo'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Noite do Hot Dog', i:'Hot Dog completo com purê'} },
-          { date: '31/dez', day: 'Quarta', highlight: true, b: {t:'Cuscuz Nordestino', i:'Cuscuz, ovo, queijo, café'}, l: {t:'Pré-Réveillon', i:'Filé de frango, arroz e purê/salada'}, d: {t:'✨ CHURRASCO DA VIRADA ✨', i:'Picanha, Contra-filé, Linguiça, Frango, Pão de alho'} },
+          { date: '31/dez', day: 'Quarta', highlight: true, b: {t:'Cuscuz Nordestino', i:'Cuscuz, ovo, queijo, café'}, l: {t:'Pré-Réveillon', i:'Filé de frango, arroz e purê/salada'}, d: {t:'✨ CHURRASCO DA VIRADA ✨', i:'Carnes, acompanhamentos e festa!'} },
           { date: '01/jan', day: 'Quinta', highlight: true, b: {t:'Café da Ressaca', i:'Frio (pão francês, presunto, queijo)'}, l: {t:'✨ Churrasco de Ano Novo ✨', i:'Continuação da festa (Maminha, sobras)'}, d: {t:'Noite do Pastel', i:'Pastel de carne e queijo'} },
           { date: '02/jan', day: 'Sexta', b: {t:'Café Nordestino', i:'Cuscuz com ovo e queijo + pão francês'}, l: {t:'Almoço Favorito', i:'Strogonoff de carne, arroz e batata palha'}, d: {t:'Noite do Macarrão', i:'Macarrão com carne moída'} },
           { date: '03/jan', day: 'Sábado', b: {t:'Café Variado', i:'Pães variados e ovos'}, l: {t:'Almoço Leve', i:'Filé de frango, arroz e purê/salada'}, d: {t:'Hamburgada', i:'Hambúrguer artesanal'} },
@@ -336,130 +336,88 @@
         ];
 
         var defaultShoppingList = [
-            // Descartáveis
-            { id: '1', category: 'Descartáveis', name: 'Copo desc. 200ml', unit: 'pct', qty: 15, unitPrice: 14.40, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '2', category: 'Descartáveis', name: 'Prato desc.', unit: 'pct', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '3', category: 'Descartáveis', name: 'Talheres desc.', unit: 'pct', qty: 10, unitPrice: 24.00, totalEst: 240.00, realPrice: 0, bought: false },
-            { id: '4', category: 'Descartáveis', name: 'Guardanapo', unit: 'pct', qty: 8, unitPrice: 9.60, totalEst: 76.80, realPrice: 0, bought: false },
-            { id: '5', category: 'Descartáveis', name: 'Papel toalha', unit: 'rolo', qty: 14, unitPrice: 7.80, totalEst: 109.20, realPrice: 0, bought: false },
-            { id: '6', category: 'Descartáveis', name: 'Bandeja alum. G', unit: 'un', qty: 25, unitPrice: 4.20, totalEst: 105.00, realPrice: 0, bought: false },
-            { id: '7', category: 'Descartáveis', name: 'Bandeja alum. M', unit: 'un', qty: 30, unitPrice: 3.36, totalEst: 100.80, realPrice: 0, bought: false },
-            { id: '8', category: 'Descartáveis', name: 'Papel alumínio', unit: 'rolo', qty: 3, unitPrice: 14.40, totalEst: 43.20, realPrice: 0, bought: false },
-            { id: '9', category: 'Descartáveis', name: 'Filme plástico', unit: 'rolo', qty: 3, unitPrice: 9.60, totalEst: 28.80, realPrice: 0, bought: false },
+            // Descartáveis (Quantidades 33 pessoas)
+            { id: '1', category: 'Descartáveis', name: 'Copo descartável 200ml', unit: 'pct (100 un)', qty: 15, unitPrice: 12.00, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '2', category: 'Descartáveis', name: 'Prato descartável', unit: 'pct (50 un)', qty: 20, unitPrice: 18.00, totalEst: 360.00, realPrice: 0, bought: false },
+            { id: '3', category: 'Descartáveis', name: 'Talheres descartáveis', unit: 'pct (50 un)', qty: 20, unitPrice: 20.00, totalEst: 400.00, realPrice: 0, bought: false },
+            { id: '4', category: 'Descartáveis', name: 'Guardanapo', unit: 'pct', qty: 8, unitPrice: 8.00, totalEst: 64.00, realPrice: 0, bought: false },
+            { id: '5', category: 'Descartáveis', name: 'Papel toalha', unit: 'rolo', qty: 12, unitPrice: 6.50, totalEst: 78.00, realPrice: 0, bought: false },
+            { id: '6', category: 'Descartáveis', name: 'Bandeja alumínio grande', unit: 'un', qty: 25, unitPrice: 3.50, totalEst: 87.50, realPrice: 0, bought: false },
+            { id: '7', category: 'Descartáveis', name: 'Bandeja alumínio média', unit: 'un', qty: 30, unitPrice: 2.80, totalEst: 84.00, realPrice: 0, bought: false },
+            { id: '8', category: 'Descartáveis', name: 'Papel alumínio', unit: 'rolo', qty: 3, unitPrice: 12.00, totalEst: 36.00, realPrice: 0, bought: false },
+            { id: '9', category: 'Descartáveis', name: 'Filme plástico', unit: 'rolo', qty: 3, unitPrice: 8.00, totalEst: 24.00, realPrice: 0, bought: false },
+            // Limpeza
+            { id: '10', category: 'Limpeza', name: 'Detergente', unit: 'un', qty: 10, unitPrice: 2.50, totalEst: 25.00, realPrice: 0, bought: false },
+            { id: '11', category: 'Limpeza', name: 'Esponja', unit: 'un', qty: 10, unitPrice: 1.50, totalEst: 15.00, realPrice: 0, bought: false },
+            { id: '12', category: 'Limpeza', name: 'Desinfetante (1L)', unit: 'un', qty: 6, unitPrice: 8.00, totalEst: 48.00, realPrice: 0, bought: false },
+            { id: '13', category: 'Limpeza', name: 'Luvas descartáveis', unit: 'cx', qty: 6, unitPrice: 25.00, totalEst: 150.00, realPrice: 0, bought: false },
+            { id: '14', category: 'Limpeza', name: 'Pano de chão', unit: 'un', qty: 10, unitPrice: 8.00, totalEst: 80.00, realPrice: 0, bought: false },
+            { id: '15', category: 'Limpeza', name: 'Papel higiênico (folha dupla)', unit: 'pct', qty: 12, unitPrice: 20.00, totalEst: 240.00, realPrice: 0, bought: false },
+            { id: '16', category: 'Limpeza', name: 'Sabão em pó', unit: 'kg', qty: 2, unitPrice: 15.00, totalEst: 30.00, realPrice: 0, bought: false },
+            { id: '17', category: 'Limpeza', name: 'Saco de lixo 100L', unit: 'rolo', qty: 14, unitPrice: 12.00, totalEst: 168.00, realPrice: 0, bought: false },
+            { id: '18', category: 'Limpeza', name: 'Água sanitária (1L)', unit: 'un', qty: 6, unitPrice: 5.00, totalEst: 30.00, realPrice: 0, bought: false },
             // Mercado
-            { id: '10', category: 'Mercado', name: 'Arroz', unit: 'kg', qty: 50, unitPrice: 8.64, totalEst: 432.00, realPrice: 0, bought: false },
-            { id: '11', category: 'Mercado', name: 'Macarrão', unit: 'kg', qty: 16, unitPrice: 10.68, totalEst: 170.88, realPrice: 0, bought: false },
-            { id: '12', category: 'Mercado', name: 'Molho Tomate', unit: 'kg', qty: 14, unitPrice: 14.40, totalEst: 201.60, realPrice: 0, bought: false },
-            { id: '13', category: 'Mercado', name: 'Óleo', unit: 'L', qty: 8, unitPrice: 10.20, totalEst: 81.60, realPrice: 0, bought: false },
-            { id: '14', category: 'Mercado', name: 'Sal', unit: 'kg', qty: 4, unitPrice: 5.40, totalEst: 21.60, realPrice: 0, bought: false },
-            { id: '15', category: 'Mercado', name: 'Açúcar', unit: 'kg', qty: 12, unitPrice: 5.76, totalEst: 69.12, realPrice: 0, bought: false },
-            { id: '16', category: 'Mercado', name: 'Café pó', unit: 'kg', qty: 10, unitPrice: 36.00, totalEst: 360.00, realPrice: 0, bought: false },
-            { id: '17', category: 'Mercado', name: 'Leite', unit: 'L', qty: 60, unitPrice: 5.76, totalEst: 345.60, realPrice: 0, bought: false },
-            { id: '18', category: 'Mercado', name: 'Flocão Milho', unit: 'kg', qty: 16.5, unitPrice: 11.88, totalEst: 196.02, realPrice: 0, bought: false },
-            { id: '19', category: 'Mercado', name: 'Batata palha', unit: 'kg', qty: 6, unitPrice: 37.20, totalEst: 223.20, realPrice: 0, bought: false },
-            { id: '20', category: 'Mercado', name: 'Farofa', unit: 'kg', qty: 9, unitPrice: 22.80, totalEst: 205.20, realPrice: 0, bought: false },
-            { id: '21', category: 'Mercado', name: 'Milho verde', unit: 'lata', qty: 24, unitPrice: 7.20, totalEst: 172.80, realPrice: 0, bought: false },
-            { id: '22', category: 'Mercado', name: 'Ervilha', unit: 'lata', qty: 24, unitPrice: 7.80, totalEst: 187.20, realPrice: 0, bought: false },
-            { id: '23', category: 'Mercado', name: 'Maionese', unit: 'kg', qty: 8, unitPrice: 26.40, totalEst: 211.20, realPrice: 0, bought: false },
-            { id: '24', category: 'Mercado', name: 'Ketchup', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
-            { id: '25', category: 'Mercado', name: 'Mostarda', unit: 'kg', qty: 4, unitPrice: 14.40, totalEst: 57.60, realPrice: 0, bought: false },
-            { id: '26', category: 'Mercado', name: 'Suco', unit: 'L', qty: 40, unitPrice: 7.80, totalEst: 312.00, realPrice: 0, bought: false },
+            { id: '19', category: 'Mercado', name: 'Arroz', unit: 'kg', qty: 25, unitPrice: 7.20, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '20', category: 'Mercado', name: 'Açúcar', unit: 'kg', qty: 12, unitPrice: 4.80, totalEst: 57.60, realPrice: 0, bought: false },
+            { id: '21', category: 'Mercado', name: 'Batata palha', unit: 'kg', qty: 6, unitPrice: 31.00, totalEst: 186.00, realPrice: 0, bought: false },
+            { id: '22', category: 'Mercado', name: 'Café em pó', unit: 'kg', qty: 10, unitPrice: 30.00, totalEst: 300.00, realPrice: 0, bought: false },
+            { id: '23', category: 'Mercado', name: 'Carvão', unit: 'saco', qty: 5, unitPrice: 35.00, totalEst: 175.00, realPrice: 0, bought: false },
+            { id: '24', category: 'Mercado', name: 'Ervilha', unit: 'lata', qty: 24, unitPrice: 6.50, totalEst: 156.00, realPrice: 0, bought: false },
+            { id: '25', category: 'Mercado', name: 'Farofa', unit: 'kg', qty: 9, unitPrice: 19.00, totalEst: 171.00, realPrice: 0, bought: false },
+            { id: '26', category: 'Mercado', name: 'Feijão', unit: 'kg', qty: 15, unitPrice: 8.00, totalEst: 120.00, realPrice: 0, bought: false },
+            { id: '27', category: 'Mercado', name: 'Flocão de milho', unit: 'kg', qty: 16.5, unitPrice: 9.90, totalEst: 163.35, realPrice: 0, bought: false },
+            { id: '28', category: 'Mercado', name: 'Flocão de milho (cuscuz)', unit: 'kg', qty: 16.5, unitPrice: 9.90, totalEst: 163.35, realPrice: 0, bought: false },
+            { id: '29', category: 'Mercado', name: 'Ketchup', unit: 'kg', qty: 4, unitPrice: 12.00, totalEst: 48.00, realPrice: 0, bought: false },
+            { id: '30', category: 'Mercado', name: 'Leite', unit: 'L', qty: 60, unitPrice: 4.80, totalEst: 288.00, realPrice: 0, bought: false },
+            { id: '31', category: 'Mercado', name: 'Macarrão seco', unit: 'kg', qty: 8, unitPrice: 8.90, totalEst: 71.20, realPrice: 0, bought: false },
+            { id: '32', category: 'Mercado', name: 'Maionese', unit: 'kg', qty: 8, unitPrice: 22.00, totalEst: 176.00, realPrice: 0, bought: false },
+            { id: '33', category: 'Mercado', name: 'Massa de pastel', unit: 'rolo', qty: 10, unitPrice: 12.00, totalEst: 120.00, realPrice: 0, bought: false },
+            { id: '34', category: 'Mercado', name: 'Milho verde', unit: 'lata', qty: 24, unitPrice: 6.00, totalEst: 144.00, realPrice: 0, bought: false },
+            { id: '35', category: 'Mercado', name: 'Molho de tomate natural', unit: 'kg', qty: 6, unitPrice: 12.00, totalEst: 72.00, realPrice: 0, bought: false },
+            { id: '36', category: 'Mercado', name: 'Mostarda', unit: 'kg', qty: 4, unitPrice: 12.00, totalEst: 48.00, realPrice: 0, bought: false },
+            { id: '37', category: 'Mercado', name: 'Ovos', unit: 'un', qty: 120, unitPrice: 1.00, totalEst: 120.00, realPrice: 0, bought: false },
+            { id: '38', category: 'Mercado', name: 'Papel higiênico', unit: 'pct (12 rolos)', qty: 4, unitPrice: 25.00, totalEst: 100.00, realPrice: 0, bought: false },
+            { id: '39', category: 'Mercado', name: 'Sal grosso', unit: 'kg', qty: 5, unitPrice: 4.50, totalEst: 22.50, realPrice: 0, bought: false },
+            { id: '40', category: 'Mercado', name: 'Sal refinado', unit: 'kg', qty: 4, unitPrice: 4.50, totalEst: 18.00, realPrice: 0, bought: false },
+            { id: '41', category: 'Mercado', name: 'Temperos variados (pimenta, orégano, etc.)', unit: 'kit', qty: 1, unitPrice: 50.00, totalEst: 50.00, realPrice: 0, bought: false },
+            { id: '42', category: 'Mercado', name: 'Álcool 70%', unit: 'L', qty: 2, unitPrice: 10.00, totalEst: 20.00, realPrice: 0, bought: false },
+            { id: '43', category: 'Mercado', name: 'Óleo', unit: 'L', qty: 6, unitPrice: 8.50, totalEst: 51.00, realPrice: 0, bought: false },
+            // Frios e Laticínios
+            { id: '44', category: 'Frios e Laticínios', name: 'Champignon', unit: 'kg', qty: 1, unitPrice: 45.00, totalEst: 45.00, realPrice: 0, bought: false },
+            { id: '45', category: 'Frios e Laticínios', name: 'Creme de leite', unit: 'cx', qty: 10, unitPrice: 4.50, totalEst: 45.00, realPrice: 0, bought: false },
+            { id: '46', category: 'Frios e Laticínios', name: 'Manteiga/Margarina', unit: 'kg', qty: 3, unitPrice: 18.00, totalEst: 54.00, realPrice: 0, bought: false },
+            { id: '47', category: 'Frios e Laticínios', name: 'Presunto', unit: 'kg', qty: 4, unitPrice: 28.00, totalEst: 112.00, realPrice: 0, bought: false },
+            { id: '48', category: 'Frios e Laticínios', name: 'Queijo (mussarela/coalho)', unit: 'kg', qty: 6, unitPrice: 35.00, totalEst: 210.00, realPrice: 0, bought: false },
             // Açougue
-            { id: '27', category: 'Açougue', name: 'Filé Frango', unit: 'kg', qty: 40, unitPrice: 32.40, totalEst: 1296.00, realPrice: 0, bought: false },
-            { id: '28', category: 'Açougue', name: 'Patinho Moído', unit: 'kg', qty: 21, unitPrice: 53.99, totalEst: 1133.75, realPrice: 0, bought: false },
-            { id: '29', category: 'Açougue', name: 'Maminha', unit: 'kg', qty: 11, unitPrice: 62.40, totalEst: 686.40, realPrice: 0, bought: false },
-            { id: '30', category: 'Açougue', name: 'Contra-filé', unit: 'kg', qty: 6, unitPrice: 65.99, totalEst: 395.93, realPrice: 0, bought: false },
-            { id: '31', category: 'Açougue', name: 'Picanha', unit: 'kg', qty: 4, unitPrice: 83.99, totalEst: 335.95, realPrice: 0, bought: false },
-            { id: '32', category: 'Açougue', name: 'Linguiça', unit: 'kg', qty: 18, unitPrice: 32.39, totalEst: 582.98, realPrice: 0, bought: false },
-            { id: '33', category: 'Açougue', name: 'Tulipa Frango', unit: 'kg', qty: 4, unitPrice: 9.59, totalEst: 38.35, realPrice: 0, bought: false },
-            { id: '34', category: 'Açougue', name: 'Coxinha Asa', unit: 'kg', qty: 4, unitPrice: 21.59, totalEst: 86.35, realPrice: 0, bought: false },
-            { id: '35', category: 'Açougue', name: 'Salsicha', unit: 'kg', qty: 6, unitPrice: 21.60, totalEst: 129.60, realPrice: 0, bought: false },
-            { id: '36', category: 'Açougue', name: 'Hambúrguer', unit: 'kg', qty: 7, unitPrice: 53.99, totalEst: 377.92, realPrice: 0, bought: false },
+            { id: '49', category: 'Açougue', name: 'Contra-filé', unit: 'kg', qty: 5, unitPrice: 54.99, totalEst: 274.95, realPrice: 0, bought: false },
+            { id: '50', category: 'Açougue', name: 'Coxinha da asa', unit: 'kg', qty: 2.5, unitPrice: 17.99, totalEst: 44.98, realPrice: 0, bought: false },
+            { id: '51', category: 'Açougue', name: 'Filé de frango', unit: 'kg', qty: 30, unitPrice: 27.00, totalEst: 810.00, realPrice: 0, bought: false },
+            { id: '52', category: 'Açougue', name: 'Hambúrguer (patinho)', unit: 'kg', qty: 5, unitPrice: 44.99, totalEst: 224.95, realPrice: 0, bought: false },
+            { id: '53', category: 'Açougue', name: 'Linguiça toscana', unit: 'kg', qty: 7, unitPrice: 26.99, totalEst: 188.93, realPrice: 0, bought: false },
+            { id: '54', category: 'Açougue', name: 'Maminha', unit: 'kg', qty: 6, unitPrice: 52.00, totalEst: 312.00, realPrice: 0, bought: false },
+            { id: '55', category: 'Açougue', name: 'Patinho moído', unit: 'kg', qty: 7, unitPrice: 44.99, totalEst: 314.93, realPrice: 0, bought: false },
+            { id: '56', category: 'Açougue', name: 'Picanha', unit: 'kg', qty: 3, unitPrice: 69.99, totalEst: 209.97, realPrice: 0, bought: false },
+            { id: '57', category: 'Açougue', name: 'Salsicha', unit: 'kg', qty: 6, unitPrice: 18.00, totalEst: 108.00, realPrice: 0, bought: false },
+            { id: '58', category: 'Açougue', name: 'Tulipa de frango', unit: 'kg', qty: 2.5, unitPrice: 7.99, totalEst: 19.98, realPrice: 0, bought: false },
             // Hortifruti
-            { id: '37', category: 'Hortifruti', name: 'Alface', unit: 'pé', qty: 40, unitPrice: 5.40, totalEst: 216.00, realPrice: 0, bought: false },
-            { id: '38', category: 'Hortifruti', name: 'Tomate', unit: 'kg', qty: 36, unitPrice: 10.68, totalEst: 384.48, realPrice: 0, bought: false },
-            { id: '39', category: 'Hortifruti', name: 'Cebola', unit: 'kg', qty: 20, unitPrice: 9.00, totalEst: 180.00, realPrice: 0, bought: false },
-            { id: '40', category: 'Hortifruti', name: 'Batata', unit: 'kg', qty: 20, unitPrice: 8.28, totalEst: 165.60, realPrice: 0, bought: false },
-            { id: '41', category: 'Hortifruti', name: 'Cenoura', unit: 'kg', qty: 12, unitPrice: 7.80, totalEst: 93.60, realPrice: 0, bought: false },
-            { id: '42', category: 'Hortifruti', name: 'Limão', unit: 'kg', qty: 12, unitPrice: 9.00, totalEst: 108.00, realPrice: 0, bought: false },
-            { id: '43', category: 'Hortifruti', name: 'Pimentão', unit: 'kg', qty: 6, unitPrice: 11.40, totalEst: 68.40, realPrice: 0, bought: false },
-             { id: '55', category: 'Hortifruti', name: 'Alho', unit: 'kg', qty: 1, unitPrice: 30.00, totalEst: 30.00, realPrice: 0, bought: false },
+            { id: '59', category: 'Hortifruti', name: 'Alface', unit: 'pé', qty: 40, unitPrice: 4.50, totalEst: 180.00, realPrice: 0, bought: false },
+            { id: '60', category: 'Hortifruti', name: 'Batata', unit: 'kg', qty: 35, unitPrice: 6.90, totalEst: 241.50, realPrice: 0, bought: false },
+            { id: '61', category: 'Hortifruti', name: 'Cebola', unit: 'kg', qty: 20, unitPrice: 7.50, totalEst: 150.00, realPrice: 0, bought: false },
+            { id: '62', category: 'Hortifruti', name: 'Cenoura', unit: 'kg', qty: 12, unitPrice: 6.50, totalEst: 78.00, realPrice: 0, bought: false },
+            { id: '63', category: 'Hortifruti', name: 'Limão', unit: 'kg', qty: 12, unitPrice: 7.50, totalEst: 90.00, realPrice: 0, bought: false },
+            { id: '64', category: 'Hortifruti', name: 'Pimentão', unit: 'kg', qty: 6, unitPrice: 9.50, totalEst: 57.00, realPrice: 0, bought: false },
+            { id: '65', category: 'Hortifruti', name: 'Tomate', unit: 'kg', qty: 36, unitPrice: 8.90, totalEst: 320.40, realPrice: 0, bought: false },
             // Padaria
-            { id: '44', category: 'Padaria', name: 'Pão francês', unit: 'un', qty: 260, unitPrice: 1.20, totalEst: 312.00, realPrice: 0, bought: false },
-            { id: '45', category: 'Padaria', name: 'Pão de hot dog', unit: 'un', qty: 50, unitPrice: 1.44, totalEst: 72.00, realPrice: 0, bought: false },
-            { id: '46', category: 'Padaria', name: 'Pão de hambúrguer', unit: 'un', qty: 50, unitPrice: 1.92, totalEst: 96.00, realPrice: 0, bought: false },
-            { id: '47', category: 'Padaria', name: 'Pão de alho', unit: 'un', qty: 60, unitPrice: 3.36, totalEst: 201.60, realPrice: 0, bought: false },
-            { id: '48', category: 'Padaria', name: 'Ingr. Pão Caseiro', unit: 'kit', qty: 4, unitPrice: 30.00, totalEst: 120.00, realPrice: 0, bought: false },
+            { id: '66', category: 'Padaria', name: 'Pão Pullman', unit: 'un', qty: 12, unitPrice: 12.00, totalEst: 144.00, realPrice: 0, bought: false },
+            { id: '67', category: 'Padaria', name: 'Pão de alho', unit: 'un', qty: 60, unitPrice: 2.80, totalEst: 168.00, realPrice: 0, bought: false },
+            { id: '68', category: 'Padaria', name: 'Pão de hambúrguer', unit: 'un', qty: 50, unitPrice: 1.60, totalEst: 80.00, realPrice: 0, bought: false },
+            { id: '69', category: 'Padaria', name: 'Pão de hot dog', unit: 'un', qty: 80, unitPrice: 1.20, totalEst: 96.00, realPrice: 0, bought: false },
+            { id: '70', category: 'Padaria', name: 'Pão francês', unit: 'un', qty: 260, unitPrice: 1.00, totalEst: 260.00, realPrice: 0, bought: false },
+            { id: '71', category: 'Padaria', name: 'Pão sovado', unit: 'un', qty: 12, unitPrice: 8.00, totalEst: 96.00, realPrice: 0, bought: false },
             // Bebidas
-            { id: '49', category: 'Bebidas', name: 'Água 20L', unit: 'un', qty: 10, unitPrice: 21.60, totalEst: 216.00, realPrice: 0, bought: false },
-            // --- Itens Adicionados / Recuperados ---
-            { id: '50', category: 'Mercado', name: 'Ovos (Cartela 30un)', unit: 'un', qty: 17, unitPrice: 20.00, totalEst: 340.00, realPrice: 0, bought: false }, // ~500 ovos
-            { id: '51', category: 'Mercado', name: 'Manteiga/Margarina (500g)', unit: 'un', qty: 20, unitPrice: 20.00, totalEst: 400.00, realPrice: 0, bought: false }, // 10kg
-            { id: '52', category: 'Mercado', name: 'Carvão (Saco)', unit: 'un', qty: 5, unitPrice: 35.00, totalEst: 175.00, realPrice: 0, bought: false },
-            { id: '53', category: 'Frios', name: 'Presunto', unit: 'kg', qty: 4, unitPrice: 45.00, totalEst: 180.00, realPrice: 0, bought: false },
-            { id: '54', category: 'Frios', name: 'Mussarela', unit: 'kg', qty: 4, unitPrice: 55.00, totalEst: 220.00, realPrice: 0, bought: false },
-             { id: '56', category: 'Limpeza / Uso Geral', name: 'Detergente', unit: 'un', qty: 5, unitPrice: 2.50, totalEst: 12.50, realPrice: 0, bought: false },
-            { id: '57', category: 'Limpeza / Uso Geral', name: 'Esponja', unit: 'pct', qty: 2, unitPrice: 5.00, totalEst: 10.00, realPrice: 0, bought: false },
-            { id: '58', category: 'Limpeza / Uso Geral', name: 'Saco de Lixo 100L', unit: 'pct', qty: 2, unitPrice: 15.00, totalEst: 30.00, realPrice: 0, bought: false },
-            { id: '59', category: 'Limpeza / Uso Geral', name: 'Papel Higiênico (Fardo)', unit: 'un', qty: 4, unitPrice: 25.00, totalEst: 100.00, realPrice: 0, bought: false },
-            { id: '60', category: 'Limpeza / Uso Geral', name: 'Pano de Prato', unit: 'un', qty: 5, unitPrice: 5.00, totalEst: 25.00, realPrice: 0, bought: false },
-             { id: '61', category: 'Limpeza / Uso Geral', name: 'Fósforo / Isqueiro', unit: 'un', qty: 2, unitPrice: 5.00, totalEst: 10.00, realPrice: 0, bought: false }
-        ];
-
-        var recipesData = [
-            {
-                date: '30/dez - Terça',
-                meals: [
-                    { t: 'Café: Pão com Ovos', tag: 'tag-café', ing: '65 Pães franceses, 2kg Manteiga, 100 Ovos, 10L Leite, 2kg Café, 3kg Açúcar', 
-                      st: ['Prepare café em garrafas térmicas.', 'Aqueça o leite sem ferver.', 'Corte os pães.', 'Faça ovos mexidos em levas de 20-30 para não esfriar.'] },
-                    { t: 'Almoço: PF Frango', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Filé de Frango, 10 Alfaces, 8kg Tomate, 2L Óleo, 3kg Cebola', 
-                      st: ['Arroz: refogue bem.', 'Frango: chapa quente aos poucos.', 'Salada: higienizar.'] },
-                    { t: 'Jantar: Hot Dog', tag: 'tag-jantar', ing: '65 Pães Hot Dog, 10kg Salsicha, 6kg Molho, 8kg Batata (Purê), 2L Leite, 2kg Batata Palha', 
-                      st: ['Purê: cozinhe batatas, amasse com leite/manteiga.', 'Salsicha: ferva antes, depois molho.', 'Servir: estação de montagem.'] }
-                ]
-            },
-            {
-                date: '31/dez - Quarta',
-                meals: [
-                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, 2kg Queijo, 1kg Manteiga, 100 Ovos, 10L Leite', 
-                      st: ['Hidrate flocão (500ml/pct). Cozinhe vapor. Sirva com queijo/ovo.'] },
-                    { t: 'Almoço: Leve', tag: 'tag-almoço', ing: '10kg Arroz, 10kg Frango, Salada', st: 'Repetir preparo básico. Manter leve para a ceia.' },
-                    { t: 'Jantar: CHURRASCO VIRADA', tag: 'tag-jantar', ing: '6kg Picanha, 8kg Contra, 10kg Linguiça, 5kg Tulipa, 5kg Coxinha, 30 Pães Alho, 5kg Farofa, Vinagrete', 
-                      st: ['Acenda carvão cedo.', 'Comece por linguiça/frango/pão alho.', 'Salgue carnes nobres com sal grosso na hora.'] }
-                ]
-            },
-            {
-                date: '01/jan - Quinta',
-                meals: [
-                    { t: 'Café: Ressaca', tag: 'tag-café', ing: '65 Pães, Frios, Ovos, Café forte', st: 'Praticidade.' },
-                    { t: 'Almoço: Churrasco Cont.', tag: 'tag-almoço', ing: '8kg Maminha, Carnes restantes, Arroz, Farofa', st: 'Reacenda churrasqueira. Asse Maminha. Arroz fresco.' },
-                    { t: 'Jantar: Pastel', tag: 'tag-jantar', ing: '10 rolos Massa, 5kg Carne Moída, 3kg Queijo, 3L Óleo', st: 'Refogue carne bem seca. Rale queijo. Monte pastéis. Frite em imersão quente.' }
-                ]
-            },
-            {
-                date: '02/jan - Sexta',
-                meals: [
-                    { t: 'Café: Cuscuz', tag: 'tag-café', ing: '8kg Flocão, Queijo, Ovos', st: 'Cuscuz tradicional.' },
-                    { t: 'Almoço: Strogonoff', tag: 'tag-almoço', ing: '10kg Carne (cubos), 10cx Creme Leite, 4kg Molho, 1kg Champignon, 10kg Arroz, 3kg Batata Palha', 
-                      st: ['Sele carne aos poucos.', 'Junte molho/ketchup/mostarda.', 'Desligue e ponha creme leite.'] },
-                    { t: 'Jantar: Macarrão', tag: 'tag-jantar', ing: '8kg Macarrão, 5kg Carne Moída, Molho Tomate', st: 'Molho bolonhesa rico. Macarrão al dente.' }
-                ]
-            },
-             {
-                date: '03/jan - Sábado',
-                meals: [
-                     { t: 'Café: Variado', tag: 'tag-café', ing: 'Pães, Ovos, Frios', st: 'Básico.' },
-                     { t: 'Almoço: Leve', tag: 'tag-almoço', ing: 'Arroz, Frango, Salada', st: 'Básico.' },
-                     { t: 'Jantar: Hamburgada', tag: 'tag-jantar', ing: '7kg Carne Moída, 50 Pães, Queijo, Salada, Condimentos', st: ['Molde hambúrgueres de 140g.', 'Grelhe na chapa bem quente.', 'Monte com pão, queijo e salada.'] }
-                ]
-            },
-            {
-                date: '04/jan - Domingo',
-                meals: [
-                     { t: 'Café: Despedida', tag: 'tag-café', ing: 'Tudo que sobrou (Cuscuz/Pão)', st: 'Limpa estoque.' },
-                     { t: 'Almoço: Último', tag: 'tag-almoço', ing: 'Limpa geladeira', st: 'Criatividade com as sobras.' }
-                ]
-            }
+            { id: '72', category: 'Bebidas', name: 'Refrigerante Coca-Cola Zero', unit: 'L', qty: 86, unitPrice: 6.00, totalEst: 516.00, realPrice: 0, bought: false },
+            { id: '73', category: 'Bebidas', name: 'Suco (diversos)', unit: 'L', qty: 37, unitPrice: 6.50, totalEst: 240.50, realPrice: 0, bought: false },
+            { id: '74', category: 'Bebidas', name: 'Água mineral galão 20L', unit: 'un', qty: 10, unitPrice: 20.00, totalEst: 200.00, realPrice: 0, bought: false }
         ];
 
         var verses = {
@@ -478,20 +436,20 @@
             state: { shoppingList: [] },
             
             init: function() {
-                var saved = localStorage.getItem('family_final_v14');
+                var saved = localStorage.getItem('family_final_v22');
                 if(saved) { this.state.shoppingList = JSON.parse(saved); }
                 else { this.state.shoppingList = defaultShoppingList.map(function(i) { return { ...i, bought: false, realUnit: 0 }; }); }
                 this.navigate('home');
             },
 
             save: function() {
-                localStorage.setItem('family_final_v14', JSON.stringify(this.state.shoppingList));
+                localStorage.setItem('family_final_v22', JSON.stringify(this.state.shoppingList));
                 this.updateTotals();
             },
             
             resetData: function() {
                 if(confirm('Resetar lista?')) {
-                    localStorage.removeItem('family_final_v14');
+                    localStorage.removeItem('family_final_v22');
                     location.reload();
                 }
             },
@@ -743,7 +701,9 @@
                                     
                                     <div class="recipe-section">
                                         <div class="recipe-section-title">🥣 Ingredientes</div>
-                                        <div style="font-size:0.9rem; color:var(--slate-600);">${m.ing}</div>
+                                        <ul class="ingredients-list">
+                                            ${Array.isArray(m.ingredients) ? m.ingredients.map(ing => `<li>${ing}</li>`).join('') : `<li>${m.ingredients}</li>`}
+                                        </ul>
                                     </div>
                                     
                                     <div class="recipe-section">
@@ -805,9 +765,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header" onclick="app.toggleCard('cont-3')"><span class="font-bold text-slate-700">🥐 Padarias</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-                        <div id="cont-3" class="card-body collapsed">
+                    <div class="card"><div class="card-header" onclick="app.toggleCard('cont-3')"><span class="font-bold text-slate-700">🥐 Padarias</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div id="cont-3" class="card-body collapsed">
                             <div class="contact-item"><div class="font-bold">Padaria Princesa de Ibiúna</div><div class="text-sm">R. Quinze de Novembro, 26 – Centro</div><div class="text-sm">📞 (15) 3241-1069</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/Padaria+Princesa+de+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
                             <div class="contact-item"><div class="font-bold">Padaria Machado</div><div class="text-sm">Av. São Sebastião, 438 – Centro</div><div class="text-sm">📞 (15) 3241-1428</div><div class="text-xs">🚗 ~13,5 km | 17 min</div><a href="https://www.google.com/maps/search/Padaria+Machado+Ibiúna" target="_blank" class="contact-link">Ver Mapa</a></div>
                         </div>
